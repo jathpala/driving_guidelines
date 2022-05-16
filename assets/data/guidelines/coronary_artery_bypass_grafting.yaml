@@ -1,0 +1,13 @@
+categories: [cardiovascular]
+name: Coronary Artery Bypass Grafting (CABG)
+non_driving_period:
+    duration: 4 weeks
+unconditional_licence:
+    allowed: false
+conditional_licence:
+    allowed: true
+    review: periodic
+    criteria:
+        - Satisfactory response to treatment
+        - Minimal symptoms relevant to driving
+        - Minimal residual musculoskeletal pain
