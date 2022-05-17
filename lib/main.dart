@@ -12,7 +12,10 @@ void main() {
 class MyApp extends StatelessWidget {
     const MyApp({Key? key}) : super(key: key);
 
-    final double _PADDING = 16.0;
+    final Map<String, String> routes = const {
+        'coronary_artery_bypass_grafting': 'Coronary Artery Bypass Grafting',
+        'percutaneous_coronary_intervention': 'Percutaneous Coronary Intervention'
+    };
 
     // Application root.
     @override
@@ -20,16 +23,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             title: 'Driving Guidelines',
             theme: defaultTheme,
-            home: Scaffold(
-                appBar: AppBar(
-                    title: const Text('Driving Guidelines'),
-                    titleTextStyle: defaultTheme.textTheme.headline1
-                ),
-                body: Container(
-                    child: GuidelineList(),
-                    padding: EdgeInsets.all(_PADDING)
-                )
-            )
+            //home: Guideline('coronary_artery_bypass_grafting')
+            home: GuidelineList(routes),
         );
     }
 }

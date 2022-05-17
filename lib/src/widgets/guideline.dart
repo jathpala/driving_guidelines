@@ -37,17 +37,27 @@ class _GuidelineState extends State<Guideline> {
 
     @override
     Widget build(BuildContext context) {
-        return ListView(
-            children: [
-                Container(
-                    child: Text(
-                        mainHeading,
-                        style: Theme.of(context).textTheme.headline2
-                    ),
-                    margin: EdgeInsets.only(bottom: 25)
+        return Scaffold(
+            appBar: AppBar(
+                title: const Text('Driving Guidelines'),
+                titleTextStyle: Theme.of(context).textTheme.headline1
+            ),
+            body: Container(
+                child: ListView(
+                    children: [
+                        Container(
+                            child: Text(
+                                mainHeading,
+                                style: Theme.of(context).textTheme.headline2
+                            ),
+                            margin: EdgeInsets.only(bottom: 25)
+                        ),
+                        ...sections
+                    ]
                 ),
-                ...sections
-            ]
+                padding: EdgeInsets.all(16)
+            ),
+            backgroundColor: Colors.white
         );
     }
 }
