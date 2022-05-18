@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'src/style.dart';
+import 'src/widgets/index.dart';
 import 'src/widgets/guideline.dart';
-import 'src/widgets/guideline_list.dart';
-import 'src/yaml.dart';
+
 
 void main() {
     runApp(const MyApp());
@@ -12,19 +12,39 @@ void main() {
 class MyApp extends StatelessWidget {
     const MyApp({Key? key}) : super(key: key);
 
-    final Map<String, String> routes = const {
-        'coronary_artery_bypass_grafting': 'Coronary Artery Bypass Grafting',
-        'percutaneous_coronary_intervention': 'Percutaneous Coronary Intervention'
-    };
-
     // Application root.
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
             title: 'Driving Guidelines',
             theme: defaultTheme,
-            //home: Guideline('coronary_artery_bypass_grafting')
-            home: GuidelineList(routes),
+            initialRoute: Index.routeName,
+            onGenerateRoute: (RouteSettings settings) {
+                switch (settings.name) {
+                    case '/':
+                        return null;
+                        break;
+                    case Index.routeName:
+                        return MaterialPageRoute(
+                            builder: (context) {
+                                return Index();
+                            }
+                        );
+                        break;
+                    case Guideline.routeName:
+                        final guideline = settings.arguments as String;
+                        return MaterialPageRoute(
+                            builder: (context) {
+                                return Guideline(guideline);
+                            }
+                        );
+                        break;
+                    default:
+                        assert(false, 'Need to implement ${settings.name}');
+                        return null;
+                        break;
+                }
+            }
         );
     }
 }
