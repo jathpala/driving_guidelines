@@ -25,6 +25,7 @@ class _GuidelineState extends State<Guideline> {
     final String id;
 
     Future<GuidelineData>? guideline;
+    bool isPrivate = false;
 
     @override
     void initState() {
@@ -38,11 +39,28 @@ class _GuidelineState extends State<Guideline> {
                 return Placeholder();
             } else {
                 final List<Widget> sections = [];
+                String standard = isPrivate ? 'private' : 'commercial';
                 GuidelineData guidelineData = snapshot.data!;
                 sections.add(GuidelineHeading(guidelineData.data['name']));
-                sections.add(GuidelineNonDriving(guidelineData.data['non_driving_period']));
-                sections.add(GuidelineLicence(guidelineData.data['unconditional_licence'], GuidelineLicence.Unconditional));
-                sections.add(GuidelineLicence(guidelineData.data['conditional_licence'], GuidelineLicence.Conditional));
+                if ((guidelineData.data[standard]) == null) {
+                    // No driving standards
+                    sections.add(Column(
+                        children: [
+                            SizedBox(height: 20),
+                            RichText(
+                                text: TextSpan(
+                                    text: 'There are no ${standard} driving standards',
+                                    style: Theme.of(context).textTheme.subtitle1
+                                )
+                            )
+                        ],
+                        crossAxisAlignment: CrossAxisAlignment.start
+                    ));
+                } else {
+                    sections.add(GuidelineNonDriving(guidelineData.data[standard]['non_driving_period']));
+                    sections.add(GuidelineLicence(guidelineData.data[standard]['unconditional_licence'], GuidelineLicence.Unconditional));
+                    sections.add(GuidelineLicence(guidelineData.data[standard]['conditional_licence'], GuidelineLicence.Conditional));
+                }
                 sections.add(GuidelineNote(guidelineData.data['note']));
                 return Container(
                     child: ListView(

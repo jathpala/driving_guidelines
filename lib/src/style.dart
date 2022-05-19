@@ -10,6 +10,7 @@ final ThemeData defaultTheme = ThemeData(
         headline2: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.black),
         headline3: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, fontStyle: FontStyle.italic, color: Colors.black),
         headline4: TextStyle(fontFamily: 'Sans-Serif', fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black),
+        subtitle1: TextStyle(fontFamily: 'Sans-Serif', fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black),
         bodyText1: TextStyle(fontFamily: 'Sans-Serif', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
         bodyText2: TextStyle(fontFamily: 'Sans-Serif', fontSize: 16, fontWeight: FontWeight.w300, color: Colors.black)
     )
