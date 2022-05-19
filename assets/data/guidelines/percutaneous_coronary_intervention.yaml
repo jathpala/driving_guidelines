@@ -1,7 +1,6 @@
 categories: [cardiovascular]
 name: Percutaneous Coronary Intervention (PCI)
-non_driving_period:
-    duration: 2 days
+non_driving_period: 2 days
 unconditional_licence:
     allowed: false
 conditional_licence:
@@ -11,5 +10,6 @@ conditional_licence:
         - Satisfactory response to treatment
         - Minimal symptoms relevant to driving
 note: >
-    This standard does not apply if the patient has suffered an MI either before, during, or after PCI. In those situations, refer instead to
+    This standard does not apply if the patient has suffered an MI either
+    before, during, or after PCI. In those situations, refer instead to
     the guideline for Myocardial Infarction.
