@@ -20,9 +20,9 @@ class Index extends StatelessWidget {
     }
 
     Widget buildGuidelineList(BuildContext context) {
-        final List<ListTile> navigation_list = [];
+        final List<ListTile> navigationList = [];
         guidelines.forEach((k, v) {
-            navigation_list.add(ListTile(
+            navigationList.add(ListTile(
                 title: Text(v, style: Theme.of(context).textTheme.headline4),
                 dense: true,
                 onTap: () {
@@ -34,7 +34,7 @@ class Index extends StatelessWidget {
                 }
             ));
         });
-        return Column(children: navigation_list);
+        return Column(children: navigationList);
     }
 
     @override

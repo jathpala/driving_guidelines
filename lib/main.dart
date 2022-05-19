@@ -20,20 +20,21 @@ class MyApp extends StatelessWidget {
             theme: defaultTheme,
             initialRoute: Index.routeName,
             onGenerateRoute: (RouteSettings settings) {
+                MaterialPageRoute? route;
                 switch (settings.name) {
                     case '/':
-                        return null;
+                        route = null;
                         break;
                     case Index.routeName:
-                        return MaterialPageRoute(
+                        route = MaterialPageRoute(
                             builder: (context) {
-                                return Index();
+                                return const Index();
                             }
                         );
                         break;
                     case Guideline.routeName:
                         final guideline = settings.arguments as String;
-                        return MaterialPageRoute(
+                        route = MaterialPageRoute(
                             builder: (context) {
                                 return Guideline(guideline);
                             }
@@ -41,9 +42,10 @@ class MyApp extends StatelessWidget {
                         break;
                     default:
                         assert(false, 'Need to implement ${settings.name}');
-                        return null;
+                        route = null;
                         break;
                 }
+                return route;
             }
         );
     }

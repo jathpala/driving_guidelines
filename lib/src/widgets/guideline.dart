@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:yaml/yaml.dart';
-
 import '../guideline_data.dart';
 import 'guideline_heading.dart';
 import 'guideline_non_driving.dart';
@@ -9,20 +7,18 @@ import 'guideline_licence.dart';
 import 'guideline_note.dart';
 
 class Guideline extends StatefulWidget {
-    const Guideline(String this.id, { Key? key }): super(key: key);
+    const Guideline(this.id, { Key? key }): super(key: key);
 
     static const routeName = '/guideline';
     final String id;
 
     @override
-    State<Guideline> createState() => _GuidelineState(id);
+    State<Guideline> createState() => _GuidelineState();
 }
 
 
 class _GuidelineState extends State<Guideline> {
-    _GuidelineState(String this.id);
-
-    final String id;
+    _GuidelineState();
 
     Future<GuidelineData>? guideline;
     bool isPrivate = false;
@@ -30,13 +26,13 @@ class _GuidelineState extends State<Guideline> {
     @override
     void initState() {
         super.initState();
-        this.guideline = GuidelineData.load(id);
+        guideline = GuidelineData.load(widget.id);
     }
 
     Widget guidelineBuilder(BuildContext context, AsyncSnapshot<GuidelineData> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.data == null) {
-                return Placeholder();
+                return const Placeholder();
             } else {
                 final List<Widget> sections = [];
                 String standard = isPrivate ? 'private' : 'commercial';
@@ -46,10 +42,10 @@ class _GuidelineState extends State<Guideline> {
                     // No driving standards
                     sections.add(Column(
                         children: [
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             RichText(
                                 text: TextSpan(
-                                    text: 'There are no ${standard} driving standards',
+                                    text: 'There are no $standard driving standards',
                                     style: Theme.of(context).textTheme.subtitle1
                                 )
                             )
@@ -58,8 +54,8 @@ class _GuidelineState extends State<Guideline> {
                     ));
                 } else {
                     sections.add(GuidelineNonDriving(guidelineData.data[standard]['non_driving_period']));
-                    sections.add(GuidelineLicence(guidelineData.data[standard]['unconditional_licence'], GuidelineLicence.Unconditional));
-                    sections.add(GuidelineLicence(guidelineData.data[standard]['conditional_licence'], GuidelineLicence.Conditional));
+                    sections.add(GuidelineLicence(guidelineData.data[standard]['unconditional_licence'], GuidelineLicence.unconditional));
+                    sections.add(GuidelineLicence(guidelineData.data[standard]['conditional_licence'], GuidelineLicence.conditional));
                 }
                 sections.add(GuidelineNote(guidelineData.data['note']));
                 return Container(
@@ -75,7 +71,7 @@ class _GuidelineState extends State<Guideline> {
                 );
             }
         } else {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
         }
     }
 

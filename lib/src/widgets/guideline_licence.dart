@@ -5,8 +5,8 @@ import 'package:yaml/yaml.dart';
 class GuidelineLicence extends StatelessWidget {
     const GuidelineLicence(this.data, this.typeIsUnconditional, { Key? key }): super(key: key);
 
-    static const Unconditional = true;
-    static const Conditional = false;
+    static const unconditional = true;
+    static const conditional = false;
 
     final bool typeIsUnconditional;
     final Object? data;
@@ -71,9 +71,9 @@ class GuidelineLicence extends StatelessWidget {
         }
         return Column(
             children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 heading,
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 ...body
             ],
             crossAxisAlignment: CrossAxisAlignment.start

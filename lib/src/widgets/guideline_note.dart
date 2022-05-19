@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:yaml/yaml.dart';
-
 class GuidelineNote extends StatelessWidget {
     const GuidelineNote(this.data, { Key? key }): super(key: key);
 
@@ -26,9 +24,9 @@ class GuidelineNote extends StatelessWidget {
                 )
             ));
             content = [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 heading,
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 ...body
             ];
         }

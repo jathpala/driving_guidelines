@@ -1,18 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:yaml/yaml.dart';
 
 class GuidelineData {
-    GuidelineData._(YamlMap this.data);
+    GuidelineData._(this.data);
 
     final YamlMap data;
 
-    static const _GUIDELINE_FILE_PATH = 'assets/data/guidelines/';
-    static const _GUIDELINE_FILE_TYPE = '.yaml';
+    static const _guidelineFilePath = 'assets/data/guidelines/';
+    static const _guidelineFileType = '.yaml';
 
     static Future<GuidelineData> load(String id) async {
-        final file = _GUIDELINE_FILE_PATH + id + _GUIDELINE_FILE_TYPE;
+        final file = _guidelineFilePath + id + _guidelineFileType;
         String doc = await rootBundle.loadString(file);
         YamlMap yaml = loadYaml(doc);
         return GuidelineData._(yaml);

@@ -36,9 +36,9 @@ class GuidelineNonDriving extends StatelessWidget {
             var periods = data as List;
             if (periods.length == 1) {
                 String condition = periods[0]['criteria'] ?? '';
-                condition = condition.length > 0 ? condition + ': ' : condition;
+                condition = condition.isNotEmpty ? condition + ': ' : condition;
                 String duration = periods[0]['duration'] ?? 'None';
-                durations.add(SizedBox(height: 5));
+                durations.add(const SizedBox(height: 5));
                 durations.add(RichText(
                     text: TextSpan(
                         text: condition + duration,
@@ -46,17 +46,17 @@ class GuidelineNonDriving extends StatelessWidget {
                     )
                 ));
             } else {
-                periods.forEach((period) {
+                for (var period in periods) {
                     String condition = (period['criteria'] ?? 'Generally') + ': ';
                     String duration = period['duration'] ?? 'None';
-                    durations.add(SizedBox(height: 5));
+                    durations.add(const SizedBox(height: 5));
                     durations.add(RichText(
                         text: TextSpan(
                             text: condition + duration,
                             style: Theme.of(context).textTheme.bodyText2
                         )
                     ));
-                });
+                }
             }
             body.add(Column(
                 children: durations,
@@ -65,9 +65,9 @@ class GuidelineNonDriving extends StatelessWidget {
         }
         return Column(
             children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 heading,
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 ...body
             ],
             crossAxisAlignment: CrossAxisAlignment.start

@@ -15,13 +15,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  bulleted_list:
-    dependency: "direct main"
-    description:
-      path: "../bulleted_list"
-      relative: true
-    source: path
-    version: "0.0.1"
   characters:
     dependency: transitive
     description:

@@ -12,6 +12,7 @@ class GuidelineHeading extends StatelessWidget {
                 data,
                 style: Theme.of(context).textTheme.headline2
             ),
+            padding: const EdgeInsets.only(top: 5)
         );
     }
 }
