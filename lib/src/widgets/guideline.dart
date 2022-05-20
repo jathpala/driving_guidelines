@@ -5,12 +5,16 @@ import 'guideline_heading.dart';
 import 'guideline_non_driving.dart';
 import 'guideline_licence.dart';
 import 'guideline_note.dart';
+import 'guideline_floating_buttons.dart';
 
 class Guideline extends StatefulWidget {
     const Guideline(this.id, { Key? key }): super(key: key);
 
     static const routeName = '/guideline';
     final String id;
+
+    static _GuidelineState? of(BuildContext context) =>
+        context.findAncestorStateOfType<_GuidelineState>();
 
     @override
     State<Guideline> createState() => _GuidelineState();
@@ -21,7 +25,13 @@ class _GuidelineState extends State<Guideline> {
     _GuidelineState();
 
     Future<GuidelineData>? guideline;
-    bool isPrivate = false;
+    bool isCommercial = false;
+
+    void toggleStandard(bool isCommercial) {
+        setState(() {
+            this.isCommercial = isCommercial;
+        });
+    }
 
     @override
     void initState() {
@@ -35,7 +45,7 @@ class _GuidelineState extends State<Guideline> {
                 return const Placeholder();
             } else {
                 final List<Widget> sections = [];
-                String standard = isPrivate ? 'private' : 'commercial';
+                String standard = isCommercial ? 'commercial' : 'private';
                 GuidelineData guidelineData = snapshot.data!;
                 sections.add(GuidelineHeading(guidelineData.data['name']));
                 if ((guidelineData.data[standard]) == null) {
@@ -82,9 +92,14 @@ class _GuidelineState extends State<Guideline> {
                 title: const Text('Driving Guidelines'),
                 titleTextStyle: Theme.of(context).textTheme.headline1
             ),
-            body: FutureBuilder(
-                future: guideline,
-                builder: guidelineBuilder
+            body: Stack(
+                children: [
+                    FutureBuilder(
+                        future: guideline,
+                        builder: guidelineBuilder
+                    ),
+                    GuidelineFloatingButtons(isCommercial)
+                ]
             )
         );
     }
