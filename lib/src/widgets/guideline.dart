@@ -8,6 +8,7 @@ import 'guideline_heading.dart';
 import 'guideline_licence.dart';
 import 'guideline_non_driving.dart';
 import 'guideline_note.dart';
+import 'navigation.dart';
 
 
 class Guideline extends StatefulWidget {
@@ -113,6 +114,7 @@ class _GuidelineState extends State<Guideline> {
                 ),
                 leadingWidth: Theme.of(context).appBarTheme.leadingWidth
             ),
+            bottomNavigationBar: Navigation(Guideline.routeName),
             body: Stack(
                 children: [
                     FutureBuilder(

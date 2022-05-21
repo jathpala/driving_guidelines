@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../index_data.dart';
 import '../style.dart';
 import 'guideline.dart';
+import 'navigation.dart';
 
 
 class Index extends StatefulWidget {
@@ -60,12 +61,12 @@ class _IndexState extends State<Index> {
 
     @override
     Widget build(BuildContext context) {
-
         return Scaffold(
             appBar: AppBar(
                 title: Text(_mainTitle),
                 leadingWidth: Theme.of(context).appBarTheme.leadingWidth
             ),
+            bottomNavigationBar: Navigation(Index.routeName),
             body: Container(
                 child: FutureBuilder(
                     future: index,

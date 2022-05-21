@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final ThemeData defaultTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
-    primaryColor: Colors.blueGrey[600],
+    primaryColor: Colors.teal[400],
     appBarTheme: AppBarTheme(
         backgroundColor: Colors.teal[400],
         titleTextStyle: TextStyle(fontSize: 26, fontWeight: FontWeight.w400, color: Colors.white),
@@ -26,4 +26,5 @@ extension CustomThemeData on ThemeData {
     Color get privateStandardColorDarkened => Colors.lightGreen[900]!;
     Color get commercialStandardColor => Colors.orange[200]!;
     Color get commercialStandardColorDarkened => Colors.yellow[900]!;
+    Color get navBarColor => Colors.blueGrey[100]!;
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'src/style.dart';
 import 'src/widgets/index.dart';
+import 'src/widgets/information.dart';
+import 'src/widgets/favourites.dart';
 import 'src/widgets/guideline.dart';
 
 
@@ -29,6 +31,20 @@ class MyApp extends StatelessWidget {
                         route = MaterialPageRoute(
                             builder: (context) {
                                 return const Index();
+                            }
+                        );
+                        break;
+                    case Favourites.routeName:
+                        route = MaterialPageRoute(
+                            builder: (context) {
+                                return const Favourites();
+                            }
+                        );
+                        break;
+                    case Information.routeName:
+                        route = MaterialPageRoute(
+                            builder: (context) {
+                                return const Information();
                             }
                         );
                         break;
