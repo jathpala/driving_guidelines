@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../guideline_data.dart';
-import 'guideline_heading.dart';
-import 'guideline_non_driving.dart';
-import 'guideline_licence.dart';
-import 'guideline_note.dart';
+import '../style.dart';
+
 import 'guideline_floating_buttons.dart';
+import 'guideline_heading.dart';
+import 'guideline_licence.dart';
+import 'guideline_non_driving.dart';
+import 'guideline_note.dart';
+
 
 class Guideline extends StatefulWidget {
     const Guideline(this.id, { Key? key }): super(key: key);
@@ -39,6 +42,22 @@ class _GuidelineState extends State<Guideline> {
         guideline = GuidelineData.load(widget.id);
     }
 
+    Widget headingBuilder(BuildContext context, AsyncSnapshot<GuidelineData> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.data == null) {
+                return const Placeholder();
+            } else {
+                GuidelineData guidelineData = snapshot.data!;
+                return SingleChildScrollView(
+                    child: Text(guidelineData.data['name']),
+                    scrollDirection: Axis.horizontal
+                );
+            }
+        } else {
+            return const Text('Loading...');
+        }
+    }
+
     Widget guidelineBuilder(BuildContext context, AsyncSnapshot<GuidelineData> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.data == null) {
@@ -47,7 +66,6 @@ class _GuidelineState extends State<Guideline> {
                 final List<Widget> sections = [];
                 String standard = isCommercial ? 'commercial' : 'private';
                 GuidelineData guidelineData = snapshot.data!;
-                sections.add(GuidelineHeading(guidelineData.data['name']));
                 if ((guidelineData.data[standard]) == null) {
                     // No driving standards
                     sections.add(Column(
@@ -73,8 +91,8 @@ class _GuidelineState extends State<Guideline> {
                         children: sections
                     ),
                     padding: const EdgeInsets.only(
-                        top: 20,
-                        bottom: 20,
+                        top: 5,
+                        bottom: 5,
                         left: 20,
                         right: 20
                     )
@@ -89,8 +107,11 @@ class _GuidelineState extends State<Guideline> {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: const Text('Driving Guidelines'),
-                titleTextStyle: Theme.of(context).textTheme.headline1
+                title: FutureBuilder(
+                    future: guideline,
+                    builder: headingBuilder
+                ),
+                leadingWidth: Theme.of(context).appBarTheme.leadingWidth
             ),
             body: Stack(
                 children: [
@@ -99,7 +120,7 @@ class _GuidelineState extends State<Guideline> {
                         builder: guidelineBuilder
                     ),
                     GuidelineFloatingButtons(isCommercial)
-                ]
+                ],
             )
         );
     }

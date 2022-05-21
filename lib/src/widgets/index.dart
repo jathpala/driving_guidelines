@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../index_data.dart';
+import '../style.dart';
 import 'guideline.dart';
+
 
 class Index extends StatefulWidget {
     const Index({ Key? key }): super(key: key);
@@ -16,22 +18,14 @@ class Index extends StatefulWidget {
 class _IndexState extends State<Index> {
     _IndexState();
 
+    final _mainTitle = 'Driving Guidelines';
+
     Future<IndexData>? index;
 
     @override
     void initState() {
         super.initState();
         index = IndexData.load();
-    }
-
-    Widget buildPageHeading(BuildContext context) {
-        return ListTile(
-            title: Text(
-                'Guidelines',
-                style: Theme.of(context).textTheme.headline2
-            ),
-            dense: true
-        );
     }
 
     Widget indexBuilder(BuildContext context, AsyncSnapshot<IndexData> snapshot) {
@@ -43,8 +37,11 @@ class _IndexState extends State<Index> {
                 IndexData indexData = snapshot.data!;
                 indexData.data.forEach((k, v) {
                     navigationList.add(ListTile(
-                        title: Text(v, style: Theme.of(context).textTheme.headline4),
-                        dense: true,
+                        title: Text(
+                            v,
+                            style: Theme.of(context).textTheme.subtitle1
+                        ),
+                        dense: false,
                         onTap: () {
                             Navigator.pushNamed(
                                 context,
@@ -54,10 +51,7 @@ class _IndexState extends State<Index> {
                         }
                     ));
                 });
-                return Column(
-                    children: navigationList,
-                    crossAxisAlignment: CrossAxisAlignment.center
-                );
+                return ListView(children: navigationList);
             }
         } else {
             return const CircularProgressIndicator();
@@ -69,27 +63,18 @@ class _IndexState extends State<Index> {
 
         return Scaffold(
             appBar: AppBar(
-                title: const Text('Driving Guidelines'),
-                titleTextStyle: Theme.of(context).textTheme.headline1
+                title: Text(_mainTitle),
+                leadingWidth: Theme.of(context).appBarTheme.leadingWidth
             ),
             body: Container(
-                child: ListView(
-                    children: [
-                        buildPageHeading(context),
-                        FutureBuilder(
-                            future: index,
-                            builder: indexBuilder
-                        ),
-                    ]
+                child: FutureBuilder(
+                    future: index,
+                    builder: indexBuilder
                 ),
                 padding: const EdgeInsets.only(
-                    top: 5,
-                    bottom: 5,
-                    left: 5,
-                    right: 5
+                    top: 10,
                 )
             ),
-            backgroundColor: Colors.white
         );
     }
 }

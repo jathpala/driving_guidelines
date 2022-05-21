@@ -13,7 +13,7 @@ class GuidelineNote extends StatelessWidget {
             Widget heading = RichText(
                 text: TextSpan(
                     text: 'Note',
-                    style: Theme.of(context).textTheme.headline3
+                    style: Theme.of(context).textTheme.headline2
                 )
             );
             List<Widget> body = [];

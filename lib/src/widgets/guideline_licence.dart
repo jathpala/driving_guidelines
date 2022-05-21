@@ -16,7 +16,7 @@ class GuidelineLicence extends StatelessWidget {
         Widget heading = RichText(
             text: TextSpan(
                 text: typeIsUnconditional ? 'Unconditional Licence' : 'Conditional Licence',
-                style: Theme.of(context).textTheme.headline3
+                style: Theme.of(context).textTheme.headline2
             )
         );
         List<Widget> body = [];
@@ -60,6 +60,7 @@ class GuidelineLicence extends StatelessWidget {
             if (conditions['criteria'] != null) {
                 // Loop over the list of criteria
                 conditions['criteria'].forEach((criterion) {
+                    body.add(SizedBox(height: 2.5));
                     body.add(RichText(
                         text: TextSpan(
                             text: ' \u2022  ' + criterion,

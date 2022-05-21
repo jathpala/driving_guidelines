@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../style.dart';
 import 'guideline.dart';
 
 class GuidelineFloatingButtons extends StatelessWidget {
@@ -8,25 +9,17 @@ class GuidelineFloatingButtons extends StatelessWidget {
     final bool isCommercial;
 
     Widget createSwitch(context) {
-        /*return SizedBox(
-            width: 150,
-            height: 90,
-            child: FittedBox(
-                fit: BoxFit.fill,
-                child: Switch(
-                    value: isCommercial,
-                    onChanged: (status) =>
-                        Guideline.of(context)!.toggleStandard(status)
-                )
-            )
-        );*/
         return Transform.scale(
             child: Switch(
                 value: isCommercial,
                 onChanged: (status) =>
-                    Guideline.of(context)!.toggleStandard(status)
+                    Guideline.of(context)!.toggleStandard(status),
+                activeColor: Theme.of(context).commercialStandardColor,
+                inactiveThumbColor: Theme.of(context).privateStandardColor,
+                activeTrackColor: Theme.of(context).commercialStandardColorDarkened,
+                inactiveTrackColor: Theme.of(context).privateStandardColorDarkened
             ),
-            scale: 1.7
+            scale: 1.7,
         );
     }
 
@@ -36,15 +29,13 @@ class GuidelineFloatingButtons extends StatelessWidget {
             child: Column(
                 children: [
                     createSwitch(context),
-                    //RichText(
-                    //    text: TextSpan(
-                    //        text: isCommercial ? 'Commercial' : 'Private',
-                    //        style: Theme.of(context).textTheme.subtitle2
-                    //    )
-                    //)
                     Text(
                         isCommercial ? 'Commercial' : 'Private',
-                        style: Theme.of(context).textTheme.subtitle2
+                        style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                            color: isCommercial ?
+                                Theme.of(context).commercialStandardColorDarkened :
+                                Theme.of(context).privateStandardColorDarkened
+                        )
                     )
                 ]
             ),

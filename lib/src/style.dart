@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 
 final ThemeData defaultTheme = ThemeData(
-    appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black
+    scaffoldBackgroundColor: Colors.white,
+    primaryColor: Colors.blueGrey[600],
+    appBarTheme: AppBarTheme(
+        backgroundColor: Colors.teal[400],
+        titleTextStyle: TextStyle(fontSize: 26, fontWeight: FontWeight.w400, color: Colors.white),
     ),
-    textTheme: const TextTheme(
-        headline1: TextStyle(fontSize: 26, fontWeight: FontWeight.w500, color: Colors.black),
-        headline2: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.black),
-        headline3: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, fontStyle: FontStyle.italic, color: Colors.black),
-        headline4: TextStyle(fontFamily: 'Sans-Serif', fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black),
-        subtitle1: TextStyle(fontFamily: 'Sans-Serif', fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black),
-        subtitle2: TextStyle(fontFamily: 'Sans-Serif', fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
-        bodyText1: TextStyle(fontFamily: 'Sans-Serif', fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
-        bodyText2: TextStyle(fontFamily: 'Sans-Serif', fontSize: 16, fontWeight: FontWeight.w300, color: Colors.black)
+    textTheme: TextTheme(
+        headline1: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.black),
+        headline2: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, fontStyle: FontStyle.italic, color: Colors.grey[800]),
+        subtitle1: TextStyle(fontSize: 20, color: Colors.grey[800]),
+        subtitle2: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        bodyText1: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
+        bodyText2: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.grey[800])
     )
 );
+
+extension CustomAppBarTheme on AppBarTheme {
+    double get leadingWidth => 28.0;
+}
+
+extension CustomThemeData on ThemeData {
+    Color get privateStandardColor => Colors.lightGreen[300]!;
+    Color get privateStandardColorDarkened => Colors.lightGreen[900]!;
+    Color get commercialStandardColor => Colors.orange[200]!;
+    Color get commercialStandardColorDarkened => Colors.yellow[900]!;
+}

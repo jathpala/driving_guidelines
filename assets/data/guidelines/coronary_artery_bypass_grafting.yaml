@@ -1,5 +1,5 @@
 categories: [cardiovascular]
-name: Coronary Artery Bypass Grafting (CABG)
+name: Coronary Artery Bypass Grafting
 private:
     non_driving_period: 4 weeks
     unconditional_licence: false

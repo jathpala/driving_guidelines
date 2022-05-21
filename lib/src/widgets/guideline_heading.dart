@@ -1,3 +1,6 @@
+// TODO: Not currently used in any view - consider removing once design is
+// finalised.
+
 import 'package:flutter/material.dart';
 
 class GuidelineHeading extends StatelessWidget {
@@ -10,7 +13,7 @@ class GuidelineHeading extends StatelessWidget {
         return Container(
             child: Text(
                 data,
-                style: Theme.of(context).textTheme.headline2
+                style: Theme.of(context).textTheme.headline1
             ),
             padding: const EdgeInsets.only(top: 5)
         );

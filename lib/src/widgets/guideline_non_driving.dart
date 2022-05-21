@@ -10,7 +10,7 @@ class GuidelineNonDriving extends StatelessWidget {
         Widget heading = RichText(
             text: TextSpan(
                 text: 'Non-Driving Period',
-                style: Theme.of(context).textTheme.headline3
+                style: Theme.of(context).textTheme.headline2
             )
         );
         List<Widget> body = [];
