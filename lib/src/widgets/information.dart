@@ -16,13 +16,14 @@ class Information extends StatelessWidget {
                 Navigator.pushReplacementNamed(
                     context,
                     Index.routeName
-                );
-                return false;
+                    );
+                    return false;
             },
             child: Scaffold(
                 appBar: AppBar(
                     title: Text('Information'),
-                    leadingWidth: Theme.of(context).appBarTheme.leadingWidth
+                    automaticallyImplyLeading: false,
+                    leading: null
                 ),
                 bottomNavigationBar: Navigation(Information.routeName),
                 body: Placeholder()

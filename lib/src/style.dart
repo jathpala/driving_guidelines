@@ -17,14 +17,11 @@ final ThemeData defaultTheme = ThemeData(
     )
 );
 
-extension CustomAppBarTheme on AppBarTheme {
-    double get leadingWidth => 28.0;
-}
-
 extension CustomThemeData on ThemeData {
     Color get privateStandardColor => Colors.lightGreen[300]!;
     Color get privateStandardColorDarkened => Colors.lightGreen[900]!;
     Color get commercialStandardColor => Colors.orange[200]!;
     Color get commercialStandardColorDarkened => Colors.yellow[900]!;
     Color get navBarColor => Colors.blueGrey[100]!;
+    Color get navBarUnselectedColor => Colors.grey[600]!;
 }

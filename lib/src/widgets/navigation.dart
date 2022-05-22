@@ -20,7 +20,7 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
     _NavigationState();
 
-    int _selectedIndex = 0;
+    int? _selectedIndex = 0;
 
     void _onItemTapped(int index, BuildContext context) {
         setState(() {
@@ -38,9 +38,9 @@ class _NavigationState extends State<Navigation> {
                     break;
             }
             if (route != widget.currentRoute) {
-                Navigator.pushReplacementNamed(
-                    context,
-                    route
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    route,
+                    (Route<dynamic> r) => false
                 );
             }
         });
@@ -58,6 +58,9 @@ class _NavigationState extends State<Navigation> {
                 break;
             case Information.routeName:
                 _selectedIndex = 2;
+                break;
+            default:
+                _selectedIndex = null;
                 break;
         }
     }
@@ -79,9 +82,12 @@ class _NavigationState extends State<Navigation> {
                     label: 'Information'
                 )
             ],
-            selectedItemColor: Theme.of(context).primaryColor,
+            selectedItemColor: (_selectedIndex != null)
+                ? Theme.of(context).primaryColor
+                : Theme.of(context).navBarUnselectedColor,
+            unselectedItemColor: Theme.of(context).navBarUnselectedColor,
             backgroundColor: Theme.of(context).navBarColor,
-            currentIndex: _selectedIndex,
+            currentIndex: _selectedIndex ?? 0,
             onTap: (index) => _onItemTapped(index, context)
         );
     }

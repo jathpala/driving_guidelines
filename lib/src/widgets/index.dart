@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../index_data.dart';
 import '../style.dart';
 import 'guideline.dart';
@@ -21,12 +23,25 @@ class _IndexState extends State<Index> {
 
     final _mainTitle = 'Driving Guidelines';
 
-    Future<IndexData>? index;
+    late Future<IndexData> index;
+    late Future<SharedPreferences> preferences;
+    final List<String> _favourites = [];
 
     @override
     void initState() {
         super.initState();
         index = IndexData.load();
+        preferences = SharedPreferences.getInstance();
+        preferences.then((prefs) {
+            var favourites = prefs.getStringList('favourites');
+            if (favourites != null) {
+                _favourites.addAll(favourites);
+            }
+        });
+    }
+
+    bool isFavourite(String id) {
+        return _favourites.contains(id);
     }
 
     Widget indexBuilder(BuildContext context, AsyncSnapshot<IndexData> snapshot) {
@@ -35,12 +50,30 @@ class _IndexState extends State<Index> {
                 return const Placeholder();
             } else {
                 final List<ListTile> navigationList = [];
-                IndexData indexData = snapshot.data!;
-                indexData.data.forEach((k, v) {
+                var futureData = snapshot.data!;
+                var indexData = futureData.data;
+                indexData.forEach((k, v) {
                     navigationList.add(ListTile(
                         title: Text(
                             v,
                             style: Theme.of(context).textTheme.subtitle1
+                        ),
+                        trailing: IconButton(
+                            icon: Icon(
+                                isFavourite(k) ? Icons.favorite : Icons.favorite_border,
+                                color: isFavourite(k) ? Colors.red : null,
+                                semanticLabel: isFavourite(k) ? 'Remove from favourites' : 'Add to favourites'
+                            ),
+                            onPressed: () {
+                                setState(() {
+                                    if (isFavourite(k)) {
+                                        _favourites.remove(k);
+                                    } else {
+                                        _favourites.add(k);
+                                    }
+                                });
+                                preferences.then((prefs) => prefs.setStringList('favourites', _favourites));
+                            }
                         ),
                         dense: false,
                         onTap: () {
@@ -64,7 +97,8 @@ class _IndexState extends State<Index> {
         return Scaffold(
             appBar: AppBar(
                 title: Text(_mainTitle),
-                leadingWidth: Theme.of(context).appBarTheme.leadingWidth
+                automaticallyImplyLeading: false,
+                leading: null
             ),
             bottomNavigationBar: Navigation(Index.routeName),
             body: Container(

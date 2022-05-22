@@ -112,7 +112,8 @@ class _GuidelineState extends State<Guideline> {
                     future: guideline,
                     builder: headingBuilder
                 ),
-                leadingWidth: Theme.of(context).appBarTheme.leadingWidth
+                automaticallyImplyLeading: false,
+                leading: null
             ),
             bottomNavigationBar: Navigation(Guideline.routeName),
             body: Stack(
