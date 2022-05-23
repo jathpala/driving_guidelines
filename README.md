@@ -1,16 +1,15 @@
-# driving_guidelines
+# Driving Guidelines
 
-A new Flutter project.
+A simple app for looking at medical guidelines for assessing fitness to drive in Australia.
 
-## Getting Started
+### TODO:
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ - Add favourites button to individual guidelines
+ - Add about page
+ - Add a page with general information about driving guidelines and linking to AusRoads
+ - Add a splash screen
+ - Fill out all the available guidelines
+ - Organise guidelines by subject
+ - Publish on android!
+ - Test on apple
+ - Publish on apple!
