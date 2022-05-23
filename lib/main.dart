@@ -4,7 +4,7 @@ import 'src/style.dart';
 import 'src/widgets/index.dart';
 import 'src/widgets/information.dart';
 import 'src/widgets/favourites.dart';
-import 'src/widgets/guideline.dart';
+import 'src/widgets/guideline_container.dart';
 
 
 void main() {
@@ -48,11 +48,12 @@ class MyApp extends StatelessWidget {
                             }
                         );
                         break;
-                    case Guideline.routeName:
-                        final guideline = settings.arguments as String;
+                    case GuidelineContainer.routeName:
+                        final guideline = (settings.arguments as Map)['guideline'] as String;
+                        final showCommercialStandard = (settings.arguments as Map)['showCommercialStandard'] as bool;
                         route = MaterialPageRoute(
                             builder: (context) {
-                                return Guideline(guideline);
+                                return GuidelineContainer(guideline, showCommercialStandard);
                             }
                         );
                         break;

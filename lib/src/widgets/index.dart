@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../index_data.dart';
-import '../style.dart';
-import 'guideline.dart';
+import 'guideline_container.dart';
 import 'navigation.dart';
 
 
@@ -79,8 +78,11 @@ class _IndexState extends State<Index> {
                         onTap: () {
                             Navigator.pushNamed(
                                 context,
-                                Guideline.routeName,
-                                arguments: k
+                                GuidelineContainer.routeName,
+                                arguments: {
+                                    'guideline': k,
+                                    'showCommercialStandard': false
+                                }
                             );
                         }
                     ));
@@ -100,7 +102,7 @@ class _IndexState extends State<Index> {
                 automaticallyImplyLeading: false,
                 leading: null
             ),
-            bottomNavigationBar: Navigation(Index.routeName),
+            bottomNavigationBar: const Navigation(Index.routeName),
             body: Container(
                 child: FutureBuilder(
                     future: index,

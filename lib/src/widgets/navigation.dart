@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'index.dart';
 import 'information.dart';
 import 'favourites.dart';
-import 'guideline.dart';
 
 import '../style.dart';
 
@@ -68,7 +67,7 @@ class _NavigationState extends State<Navigation> {
     @override
     Widget build(BuildContext context) {
         return BottomNavigationBar(
-            items: [
+            items: const [
                 BottomNavigationBarItem(
                     icon: Icon(Icons.home),
                     label: 'Index'

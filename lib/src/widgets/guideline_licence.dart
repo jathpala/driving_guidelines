@@ -60,7 +60,7 @@ class GuidelineLicence extends StatelessWidget {
             if (conditions['criteria'] != null) {
                 // Loop over the list of criteria
                 conditions['criteria'].forEach((criterion) {
-                    body.add(SizedBox(height: 2.5));
+                    body.add(const SizedBox(height: 2.5));
                     body.add(RichText(
                         text: TextSpan(
                             text: ' \u2022  ' + criterion,

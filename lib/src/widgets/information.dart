@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../style.dart';
 import 'index.dart';
 import 'navigation.dart';
 
@@ -21,12 +20,12 @@ class Information extends StatelessWidget {
             },
             child: Scaffold(
                 appBar: AppBar(
-                    title: Text('Information'),
+                    title: const Text('Information'),
                     automaticallyImplyLeading: false,
                     leading: null
                 ),
-                bottomNavigationBar: Navigation(Information.routeName),
-                body: Placeholder()
+                bottomNavigationBar: const Navigation(Information.routeName),
+                body: const Placeholder()
             )
         );
     }

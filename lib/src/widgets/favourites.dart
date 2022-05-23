@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../index_data.dart';
-import '../style.dart';
-import 'guideline.dart';
+import 'guideline_container.dart';
 import 'index.dart';
 import 'navigation.dart';
 
@@ -27,7 +26,6 @@ class _FavouritesState extends State<Favourites> {
     late Future<IndexData> index;
     late Future<SharedPreferences> preferences;
     final List<String> _favourites = [];
-    bool preferences_initialised = false;
 
     @override
     void initState() {
@@ -82,8 +80,11 @@ class _FavouritesState extends State<Favourites> {
                             onTap: () {
                                 Navigator.pushNamed(
                                     context,
-                                    Guideline.routeName,
-                                    arguments: k
+                                    GuidelineContainer.routeName,
+                                    arguments: {
+                                        'guideline': k,
+                                        'showCommercialStandard': false
+                                    }
                                 );
                             }
                         ));
@@ -112,7 +113,7 @@ class _FavouritesState extends State<Favourites> {
                     automaticallyImplyLeading: false,
                     leading: null
                 ),
-                bottomNavigationBar: Navigation(Favourites.routeName),
+                bottomNavigationBar: const Navigation(Favourites.routeName),
                 body: Container(
                     child: FutureBuilder(
                         future: index,
