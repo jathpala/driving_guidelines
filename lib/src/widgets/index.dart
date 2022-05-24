@@ -24,7 +24,7 @@ class _IndexState extends State<Index> {
 
     late Future<IndexData> index;
     late Future<SharedPreferences> preferences;
-    final List<String> _favourites = [];
+    List<String> _favourites = [];
 
     @override
     void initState() {
@@ -83,7 +83,13 @@ class _IndexState extends State<Index> {
                                     'guideline': k,
                                     'showCommercialStandard': false
                                 }
-                            );
+                            ).then((_) {
+                                preferences.then((prefs) {
+                                    setState(() {
+                                        _favourites = prefs.getStringList('favourites') ?? [];
+                                    });
+                                });
+                            });
                         }
                     ));
                 });

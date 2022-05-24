@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 
+import 'favourite_button.dart';
+
 class GuidelineFloatingButtons extends StatelessWidget {
-    const GuidelineFloatingButtons({ Key? key }): super(key: key);
+    const GuidelineFloatingButtons(this._isFavourite, { Key? key }): super(key: key);
+
+    final bool _isFavourite;
 
     @override
     Widget build(BuildContext context) {
         return Positioned(
             child: Column(
-                children: const [
+                children: [
+                    Transform.scale(
+                        child: FavouriteButton(_isFavourite),
+                        scale: 1.8
+                    )
                 ]
             ),
-            bottom: 20,
-            right: 10,
-            width: 100
+            bottom: 40,
+            right: 25,
         );
     }
 }

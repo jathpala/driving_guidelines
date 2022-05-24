@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../guideline_data.dart';
 import '../style.dart';
 
+import 'favourite_button.dart';
 import 'guideline.dart';
 import 'navigation.dart';
 
@@ -26,11 +29,37 @@ class _GuidelineContainerState extends State<GuidelineContainer> {
     _GuidelineContainerState();
 
     Future<GuidelineData>? guideline;
+    late Future<SharedPreferences> preferences;
+    bool _isFavourite = false;
 
     @override
     void initState() {
         super.initState();
         guideline = GuidelineData.load(widget.id);
+        preferences = SharedPreferences.getInstance();
+        preferences.then((prefs) {
+            var favourites = prefs.getStringList('favourites');
+            if (favourites?.contains(widget.id) ?? false) {
+                setState(() {
+                    _isFavourite = true;
+                });
+            }
+        });
+    }
+
+    void toggleFavourite(bool isFavourite) {
+        preferences.then((prefs) {
+            var favourites = prefs.getStringList('favourites') ?? [];
+            if (isFavourite) {
+                favourites.add(widget.id);
+            } else {
+                favourites.remove(widget.id);
+            }
+            prefs.setStringList('favourites', favourites);
+            setState(() {
+                _isFavourite = isFavourite;
+            });
+        });
     }
 
     Widget headingBuilder(BuildContext context, AsyncSnapshot<GuidelineData> snapshot) {
@@ -79,7 +108,13 @@ class _GuidelineContainerState extends State<GuidelineContainer> {
                     builder: headingBuilder
                 ),
                 automaticallyImplyLeading: false,
-                leading: null
+                leading: null,
+                actions: [
+                    Transform.scale(
+                        child: FavouriteButton(_isFavourite),
+                        scale: 1.2
+                    )
+                ]
             ),
             bottomNavigationBar: const Navigation(GuidelineContainer.routeName),
             body: DefaultTabController(
@@ -101,6 +136,8 @@ class _GuidelineContainerState extends State<GuidelineContainer> {
                             color: Theme.of(context).navBarColor
                         ),
                         Expanded(
+                            // For now this stack isn't really used for anything
+                            // It is here to allow FloatingGuidelineButtons
                             child: Stack(
                                 children: [
                                     TabBarView(
@@ -114,7 +151,7 @@ class _GuidelineContainerState extends State<GuidelineContainer> {
                                                 builder: commercialGuidelineBuilder
                                             )
                                         ]
-                                    )
+                                    ),
                                 ]
                             )
                         )
