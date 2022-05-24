@@ -1,4 +1,6 @@
 {
   "percutaneous_coronary_intervention": "Percutaneous Coronary Intervention",
-  "coronary_artery_bypass_grafting": "Coronary Artery Bypass Grafting"
+  "coronary_artery_bypass_grafting": "Coronary Artery Bypass Grafting",
+  "vasovagal_syncope": "Vasovagal Syncope",
+  "syncope_with_unknown_cause": "Syncope with Unknown Cause"
 }

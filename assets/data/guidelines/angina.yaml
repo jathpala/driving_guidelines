@@ -1,0 +1,40 @@
+categories: [cardiovascular]
+group: [ischaemic_heart_disease]
+name: Angina
+private:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        review: periodic
+        criteria:
+            - Stable angina absent at rest or mild exertion
+            - No unstable angina
+            - Compliant with treatment
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating specialist
+        criteria:
+            - Satisfactory response to treatment
+            - Minimal symptoms relevant to driving
+commercial:
+    non_driving_period: null
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: annual
+        reviewer: treating specialist
+        criteria:
+            - Minimal symptoms relevant to driving
+            - Exercise tolerance >90% prediced on stress test
+            - No evidence severe ischaemia on stress test (see below)
+            - No severe stenoses (>70% or >50% LM) on coronary angiography
+              (see below)
+            - Left ventricular EF > 40% (see below)
+note: >
+    For commercial licenses, if there is no ischaemia on stress test then an
+    angiogram is not required and the EF does not need to be considered. If
+    angiography does not show any severe stenoses then the EF does not need to
+    be considered. The full list of criteria apply where angiography shows
+    severe non-LM stenosis. In all cases, if revascularisation has occured
+    refer also to the guidelines on PCI or CABG.

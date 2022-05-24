@@ -1,0 +1,39 @@
+categories: [blackouts, cardiovascular]
+group: [syncope]
+name: Syncope with Unknown Cause
+private:
+    non_driving_period:
+        - criteria: Single episode
+          duration: 6 months
+        - criteria: Multiple episodes within 24h
+          duration: 6 months
+        - criteria: Multiple episodes beyond 24h
+          duration: 12 months
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: annual
+        reviewer: appropriate specialist
+        criteria:
+            - No further blackouts
+commercial:
+    non_driving_period:
+        - criteria: Single episode
+          duration: 5 years
+        - criteria: Multiple episodes within a 24h period
+          duration: 5 years
+        - criteria: Multiple episodes outside of a single 24h period
+          duration: 10 years
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: annual
+        reviewer: appropriate specialist
+        criteria:
+            - No further blackouts
+note: >
+    This standard applies for cases of unexplained syncope. For vasovagal
+    syncope and syncope due to cardiovascular, neurological or endocrine causes
+    refer to the relevant guideline. There are no specific guidelines for other
+    causes not listed. Individualised guidance should be provided. Refer to the
+    'Blackouts' section of the full guidelines.
