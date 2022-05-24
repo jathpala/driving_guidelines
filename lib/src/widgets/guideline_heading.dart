@@ -1,3 +1,7 @@
+/// Copyright 2022, Jath Palasubramaniam. All rights reserved.
+/// Licensed under the GNU General Public License (version 3).
+
+
 // TODO: Not currently used in any view - consider removing once design is
 // finalised.
 
