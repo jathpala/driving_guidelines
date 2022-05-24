@@ -11,7 +11,7 @@ import '../style.dart';
 import 'favourite_button.dart';
 import 'guideline.dart';
 import 'navigation.dart';
-
+import 'options_menu.dart';
 
 class GuidelineContainer extends StatefulWidget {
     const GuidelineContainer(this.id, this.showCommercialStandard, { Key? key }): super(key: key);
@@ -116,7 +116,8 @@ class _GuidelineContainerState extends State<GuidelineContainer> {
                     Transform.scale(
                         child: FavouriteButton(_isFavourite),
                         scale: 1.2
-                    )
+                    ),
+                    const OptionsMenu()
                 ]
             ),
             bottomNavigationBar: const Navigation(GuidelineContainer.routeName),

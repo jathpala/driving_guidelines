@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'index.dart';
 import 'navigation.dart';
+import 'options_menu.dart';
 
 class Information extends StatelessWidget {
     const Information({ Key? key }): super(key: key);
@@ -25,7 +26,8 @@ class Information extends StatelessWidget {
                 appBar: AppBar(
                     title: const Text('Information'),
                     automaticallyImplyLeading: false,
-                    leading: null
+                    leading: null,
+                    actions: const [OptionsMenu()]
                 ),
                 bottomNavigationBar: const Navigation(Information.routeName),
                 body: const Placeholder()

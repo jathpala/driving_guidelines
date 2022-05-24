@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../index_data.dart';
 import 'guideline_container.dart';
 import 'navigation.dart';
+import 'options_menu.dart';
 
 
 class Index extends StatefulWidget {
@@ -109,7 +110,8 @@ class _IndexState extends State<Index> {
             appBar: AppBar(
                 title: Text(_mainTitle),
                 automaticallyImplyLeading: false,
-                leading: null
+                leading: null,
+                actions: const [OptionsMenu()]
             ),
             bottomNavigationBar: const Navigation(Index.routeName),
             body: Container(

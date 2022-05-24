@@ -10,6 +10,7 @@ import '../style.dart';
 import 'guideline_container.dart';
 import 'index.dart';
 import 'navigation.dart';
+import 'options_menu.dart';
 
 
 class Favourites extends StatefulWidget {
@@ -132,7 +133,8 @@ class _FavouritesState extends State<Favourites> {
                 appBar: AppBar(
                     title: Text(_mainTitle),
                     automaticallyImplyLeading: false,
-                    leading: null
+                    leading: null,
+                    actions: const [OptionsMenu()]
                 ),
                 bottomNavigationBar: const Navigation(Favourites.routeName),
                 body: Container(
