@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../index_data.dart';
+import '../style.dart';
 import 'guideline_container.dart';
 import 'index.dart';
 import 'navigation.dart';
@@ -96,7 +97,18 @@ class _FavouritesState extends State<Favourites> {
                         ));
                     }
                 });
-                return ListView(children: navigationList);
+                if (navigationList.isEmpty) {
+                    return Center(
+                        child: RichText(
+                            text: TextSpan(
+                                text: 'Favourited guidelines will appear here',
+                                style: Theme.of(context).textTheme.smallText1
+                            )
+                        )
+                    );
+                } else {
+                    return ListView(children: navigationList);
+                }
             }
         } else {
             return const CircularProgressIndicator();

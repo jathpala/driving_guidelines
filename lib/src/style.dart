@@ -29,3 +29,7 @@ extension CustomThemeData on ThemeData {
     Color get navBarColor => Colors.blueGrey[100]!;
     Color get navBarUnselectedColor => Colors.grey[600]!;
 }
+
+extension CustomTextTheme on TextTheme {
+    TextStyle get smallText1 => TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Colors.grey[800]);
+}
