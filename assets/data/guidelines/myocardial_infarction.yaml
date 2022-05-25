@@ -1,5 +1,5 @@
 categories: [cardiovascular]
-group: [ischaemic_heart_disease]
+group: ischaemic_heart_disease
 name: Myocardial Infarction
 private:
     non_driving_period: 2 weeks

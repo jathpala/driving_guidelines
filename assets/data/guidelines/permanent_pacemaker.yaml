@@ -1,16 +1,14 @@
 categories: [cardiovascular]
-group: ischaemic_heart_disease
-name: Percutaneous Coronary Intervention
+group: rhythm_disorders
+name: Permanent Pacemaker
 private:
-    non_driving_period: 2 days
+    non_driving_period: 2 weeks
     unconditional_licence: false
     conditional_licence:
         allowed: true
         review: periodic
         reviewer: treating doctor
         criteria:
-            - No MI immediately before, during or immediately after procedure
-              (see below)
             - Satisfactory response to treatment
             - Minimal symptoms relevant to driving
 commercial:
@@ -23,10 +21,8 @@ commercial:
         criteria:
             - Satisfactory response to treatment
             - Minimal symptoms relevant to driving
-            - Exercise tolerance >90% predicted on stres test
-            - No evidence severe ischaemia on stress test
-            - Left ventricular EF >40%
+            - Normal haemodynamic response to moderate exercise
+            - Risk of pacemaker dysfunction has been considered
 note: >
-    A patient is not eligable for an unconditional licence if they require, but
-    have not yet had the procedure. Where PCI is performed in the context of
-    angina or myocardial infarction, refer also to the relevant section.
+    This guideline applies to patient's who require but have not yet had a
+    pacemaker implant.

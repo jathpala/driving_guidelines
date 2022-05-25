@@ -1,5 +1,5 @@
 categories: [blackouts, cardiovascular]
-group: [syncope]
+group: syncope
 name: Syncope with Unknown Cause
 private:
     non_driving_period:

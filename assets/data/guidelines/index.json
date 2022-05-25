@@ -1,6 +1,9 @@
 {
   "percutaneous_coronary_intervention": "Percutaneous Coronary Intervention",
+  "myocardial_infarction": "Myocardial Infarction",
   "coronary_artery_bypass_grafting": "Coronary Artery Bypass Grafting",
+  "angina": "Angina",
   "vasovagal_syncope": "Vasovagal Syncope",
-  "syncope_with_unknown_cause": "Syncope with Unknown Cause"
+  "syncope_with_unknown_cause": "Syncope with Unknown Cause",
+  "atrial_fibrillation": "Atrial Fibrillation"
 }

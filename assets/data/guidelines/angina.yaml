@@ -1,5 +1,5 @@
 categories: [cardiovascular]
-group: [ischaemic_heart_disease]
+group: ischaemic_heart_disease
 name: Angina
 private:
     non_driving_period: null

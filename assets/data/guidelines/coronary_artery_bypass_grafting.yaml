@@ -1,5 +1,5 @@
 categories: [cardiovascular]
-group: [ischaemic_heart_disease]
+group: ischaemic_heart_disease
 name: Coronary Artery Bypass Grafting
 private:
     non_driving_period: 4 weeks
