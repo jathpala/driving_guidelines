@@ -1,0 +1,17 @@
+categories: [Other]
+group: medication
+name: Anticoagulation
+private: null
+commercial:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Short-term anticoagulation
+    conditional_licence:
+        allowed: true
+        review: annual
+        reviewer: treating specialist
+        criteria:
+            - Long-term anticoagulation
+            - Anticoagulation maintained in therapeutic range
