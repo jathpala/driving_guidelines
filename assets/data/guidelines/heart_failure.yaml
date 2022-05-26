@@ -5,7 +5,8 @@ private:
     non_driving_period: null
     unconditional_licence:
         allowed: true
-        criteria: No symptoms on moderate exertion
+        criteria:
+            - No symptoms on moderate exertion
     conditional_licence:
         allowed: true
         review: periodic
