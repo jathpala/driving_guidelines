@@ -39,6 +39,22 @@ List<Widget> _bodyText(context) {
         style: Theme.of(context).textTheme.smallText1,
         textAlign: TextAlign.justify
     ));
+    items.add(const SizedBox(height: 20));
+    items.add(Text(
+        'Icons from Flaticon',
+        style: Theme.of(context).textTheme.smallText1.copyWith(
+            fontSize: 12
+        ),
+        textAlign: TextAlign.justify
+    ));
+    items.add(const SizedBox(height: 2));
+    items.add(Text(
+        'https://www.flaticon.com/free-icons/driver-license',
+        style: Theme.of(context).textTheme.smallText1.copyWith(
+            fontSize: 12
+        ),
+        textAlign: TextAlign.justify
+    ));
     return items;
 }
 
