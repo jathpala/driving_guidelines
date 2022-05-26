@@ -6,20 +6,15 @@ import 'package:flutter/material.dart';
 import 'style.dart';
 
 String _legaleseText() {
-    var legalese = 'Copyright 2022 Jath Palasubramaniam.';
-    legalese += ' All Rights Reserved.';
-    legalese += ' Licenced under the GPLv3.';
+    var legalese = 'Copyright 2022, Jath Palasubramaniam.';
+    legalese += '\nAll Rights Reserved.';
+    legalese += '\nLicenced under the GPLv3.';
+
     return legalese;
 }
 
 List<Widget> _bodyText(context) {
     List<Widget> items = [];
-    items.add(const SizedBox(height: 10));
-    items.add(Text(
-        'This app provides a summary of the Australian medical standards for driver licencing and is targeted at healthcare providers. Refer to the full guidelines published by Austroads for details. Please note this app is not associated with or endorsed by Austroads.',
-        style: Theme.of(context).textTheme.smallText1,
-        textAlign: TextAlign.justify
-    ));
     items.add(const SizedBox(height: 20));
     items.add(Text(
         'Jath Palasubramaniam',
