@@ -1,9 +1,70 @@
 {
-  "percutaneous_coronary_intervention": "Percutaneous Coronary Intervention",
-  "myocardial_infarction": "Myocardial Infarction",
-  "coronary_artery_bypass_grafting": "Coronary Artery Bypass Grafting",
-  "angina": "Angina",
-  "vasovagal_syncope": "Vasovagal Syncope",
-  "syncope_with_unknown_cause": "Syncope with Unknown Cause",
-  "atrial_fibrillation": "Atrial Fibrillation"
+  "cardiovascular": {
+    "structural": {
+      "congenital_heart_disease": "Congenital Heart Disease",
+      "valvular_heart_disease": "Valvular Heart Disease"
+    },
+    "rhythm_disorders": {
+      "cardiac_arrest": "Cardiac Arrest",
+      "ecg_abnormalities": "ECG Abnormalities",
+      "permanent_pacemaker": "Permanent Pacemaker",
+      "cardiac_arrhythmias": "Cardiac Arrhythmias",
+      "implantable_cardiac_defibrillator": "Implantable Cardiac Defibrillator",
+      "atrial_fibrillation": "Atrial Fibrillation"
+    },
+    "heart_failure": {
+      "dilated_cardiomyopathy": "Dilated Cardiomyopathy",
+      "ventricular_assist_device": "Ventricular Assist Device",
+      "hypertrophic_cardiomyopathy": "Hypertrophic Cardiomyopathy",
+      "heart_transplant": "Heart Transplant",
+      "heart_failure": "Heart Failure"
+    },
+    "ischaemic_heart_disease": {
+      "percutaneous_coronary_intervention": "Percutaneous Coronary Intervention",
+      "myocardial_infarction": "Myocardial Infarction",
+      "coronary_artery_bypass_grafting": "Coronary Artery Bypass Grafting",
+      "angina": "Angina"
+    },
+    "vascular": {
+      "aortic_aneurysm": "Aortic Aneurysm",
+      "deep_vein_thrombosis": "Deep Vein Thrombosis",
+      "pulmonary_embolism": "Pulmonary Embolism"
+    },
+    "syncope": {
+      "vasovagal_syncope": "Vasovagal Syncope",
+      "syncope_with_unknown_cause": "Syncope with Unknown Cause",
+      "cardiac_syncope": "Cardiac Syncope"
+    },
+    "risk_factors": {
+      "hypertension": "Hypertension"
+    }
+  },
+  "blackouts": {
+    "rhythm_disorders": {
+      "cardiac_arrest": "Cardiac Arrest",
+      "cardiac_arrhythmias": "Cardiac Arrhythmias"
+    },
+    "syncope": {
+      "vasovagal_syncope": "Vasovagal Syncope",
+      "syncope_with_unknown_cause": "Syncope with Unknown Cause",
+      "cardiac_syncope": "Cardiac Syncope"
+    }
+  },
+  "endocrine": {
+    "diabetes": {
+      "diabetes_mellitus_non_insulin": "Diabetes Mellitus, Treated with Non-insulin Medication",
+      "diabetes_mellitus_insulin": "Diabetes Mellitus, Treated with Insulin",
+      "diabetes_mellitus_lifestyle": "Diabetes Mellitus, Treated without Medication"
+    }
+  },
+  "other": {
+    "medication": {
+      "anticoagulation": "Anticoagulation"
+    }
+  },
+  "audiology": {
+    "hearing_loss": {
+      "hearing_loss": "Hearing Loss"
+    }
+  }
 }

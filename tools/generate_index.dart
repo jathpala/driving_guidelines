@@ -20,13 +20,23 @@ void main() {
     final files = contents.whereType<File>().where((filename) => basename(filename.path) != indexFile);
 
     // Create a dictionary of guideline filenames and human readable names
-    final Map<String, String> index = {};
+    final Map<String, Map<String, Map<String, String>>> index = {};
     for (var f in files) {
         var contents = f.readAsStringSync();
         var yaml = loadYaml(contents);
-        var name = yaml['name'].split('(')[0].trim();
+        var categories = yaml['categories'];
+        var group = yaml['group'];
+        var name = yaml['name'];
         var filename = basename(f.path).split('.')[0];
-        index[filename] = name;
+        for (var category in categories) {
+            if (!index.containsKey(category)) {
+                index[category] = {};
+            }
+            if (!index[category]!.containsKey(group)) {
+                index[category]![group] = {};
+            }
+            index[category]![group]![filename] = name;
+        }
     }
 
     // Write JSON to the index file
@@ -36,5 +46,5 @@ void main() {
         encoder.convert(index)
     );
 
-    print('Generated index at $outfile with ${index.length} items.');
+    print('Generated index at $outfile with ${files.length} guidelines across ${index.length} categories.');
 }

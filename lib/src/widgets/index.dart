@@ -29,6 +29,7 @@ class _IndexState extends State<Index> {
     late Future<IndexData> index;
     late Future<SharedPreferences> preferences;
     List<String> _favourites = [];
+    List<bool>? _panelIsOpen;
 
     @override
     void initState() {
@@ -47,57 +48,133 @@ class _IndexState extends State<Index> {
         return _favourites.contains(id);
     }
 
+    List<ListTile> buildGroup(dynamic guidelines) {
+        List<ListTile> navigationList = [];
+        var guidelineList = guidelines.keys.toList()..sort();
+        for (var guideline in guidelineList) {
+            navigationList.add(ListTile(
+                title: Text(
+                    guidelines[guideline],
+                    style: Theme.of(context).textTheme.subtitle1
+                ),
+                trailing: IconButton(
+                    icon: Icon(
+                        isFavourite(guideline) ? Icons.favorite : Icons.favorite_border,
+                        color: isFavourite(guideline) ? Colors.red : null,
+                        semanticLabel: isFavourite(guideline) ? 'Remove from favourites' : 'Add to favourites'
+                    ),
+                    onPressed: () {
+                        setState(() {
+                            if (isFavourite(guideline)) {
+                                _favourites.remove(guideline);
+                            } else {
+                                _favourites.add(guideline);
+                            }
+                        });
+                        preferences.then((prefs) => prefs.setStringList('favourites', _favourites));
+                    }
+                ),
+                dense: false,
+                onTap: () {
+                    Navigator.pushNamed(
+                        context,
+                        GuidelineContainer.routeName,
+                        arguments: {
+                            'guideline': guideline,
+                            'showCommercialStandard': false
+                        }
+                    ).then((_) {
+                        preferences.then((prefs) {
+                            setState(() {
+                                _favourites = prefs.getStringList('favourites') ?? [];
+                            });
+                        });
+                    });
+                }
+            ));
+        }
+        return navigationList;
+    }
+
+    ExpansionPanel buildCategory(String category, dynamic groups, int i, BuildContext context)  {
+        String categoryName = '';
+        switch (category) {
+            case 'cardiovascular':
+                categoryName = 'Cardiovascular';
+                break;
+            case 'endocrine':
+                categoryName = 'Endocrine';
+                break;
+            case 'blackouts':
+                categoryName = 'Syncope';
+                break;
+            case 'other':
+                categoryName = 'Other';
+                break;
+            case 'audiology':
+                categoryName = 'Hearing';
+                break;
+            default:
+                categoryName = 'Uncategorised';
+                break;
+        }
+
+        List<Widget> navigationList = [];
+        var isFirstGroup = true;
+        groups.forEach((k, v) {
+            if (isFirstGroup) {
+                isFirstGroup = false;
+            } else {
+                navigationList.add(const Divider());
+            }
+            navigationList.addAll(buildGroup(v));
+        });
+        return ExpansionPanel(
+            headerBuilder: (context, isOpen) {
+                return Container(
+                    child: Text(
+                        categoryName,
+                        style: Theme.of(context).textTheme.headline3
+                    ),
+                    padding: const EdgeInsets.only(
+                        top: 15,
+                        bottom: 15,
+                        left: 20,
+                        right: 20
+                    )
+                );
+            },
+            body: Column(
+                children: navigationList
+            ),
+            isExpanded: _panelIsOpen![i]
+        );
+    }
+
     Widget indexBuilder(BuildContext context, AsyncSnapshot<IndexData> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.data == null) {
                 return const Placeholder();
             } else {
-                final List<ListTile> navigationList = [];
                 var futureData = snapshot.data!;
                 var indexData = futureData.data;
-                indexData.forEach((k, v) {
-                    navigationList.add(ListTile(
-                        title: Text(
-                            v,
-                            style: Theme.of(context).textTheme.subtitle1
-                        ),
-                        trailing: IconButton(
-                            icon: Icon(
-                                isFavourite(k) ? Icons.favorite : Icons.favorite_border,
-                                color: isFavourite(k) ? Colors.red : null,
-                                semanticLabel: isFavourite(k) ? 'Remove from favourites' : 'Add to favourites'
-                            ),
-                            onPressed: () {
-                                setState(() {
-                                    if (isFavourite(k)) {
-                                        _favourites.remove(k);
-                                    } else {
-                                        _favourites.add(k);
-                                    }
-                                });
-                                preferences.then((prefs) => prefs.setStringList('favourites', _favourites));
-                            }
-                        ),
-                        dense: false,
-                        onTap: () {
-                            Navigator.pushNamed(
-                                context,
-                                GuidelineContainer.routeName,
-                                arguments: {
-                                    'guideline': k,
-                                    'showCommercialStandard': false
-                                }
-                            ).then((_) {
-                                preferences.then((prefs) {
-                                    setState(() {
-                                        _favourites = prefs.getStringList('favourites') ?? [];
-                                    });
-                                });
-                            });
-                        }
-                    ));
-                });
-                return ListView(children: navigationList);
+                List<ExpansionPanel> navigationList = [];
+                _panelIsOpen ??= List.filled(indexData.length, false);
+                const categories = ['blackouts', 'cardiovascular', 'endocrine', 'audiology', 'other'];
+                var i = 0;
+                for (var category in categories) {
+                    navigationList.add(buildCategory(category, indexData[category], i, context));
+                    i++;
+                }
+
+                return SingleChildScrollView(child: ExpansionPanelList(
+                    children: navigationList,
+                    expansionCallback: (i, isOpen) {
+                        setState(() {
+                            _panelIsOpen?[i] = !isOpen;
+                        });
+                    }
+                ));
             }
         } else {
             return const CircularProgressIndicator();

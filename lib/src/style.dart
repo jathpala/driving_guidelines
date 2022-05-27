@@ -19,6 +19,7 @@ final ThemeData defaultTheme = ThemeData(
     textTheme: TextTheme(
         headline1: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.black),
         headline2: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, fontStyle: FontStyle.italic, color: Colors.grey[800]),
+        headline3: TextStyle(fontSize: 24, fontWeight: FontWeight.w400, color: Colors.grey[800]),
         subtitle1: TextStyle(fontSize: 20, color: Colors.grey[800]),
         subtitle2: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         bodyText1: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),

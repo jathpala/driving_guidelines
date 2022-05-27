@@ -57,48 +57,55 @@ class _FavouritesState extends State<Favourites> {
                 final List<ListTile> navigationList = [];
                 var futureData = snapshot.data!;
                 var indexData = futureData.data;
-                indexData.forEach((k, v) {
-                    if (_favourites.contains(k)) {
-                        navigationList.add(ListTile(
-                            title: Text(
-                                v,
-                                style: Theme.of(context).textTheme.subtitle1
-                            ),
-                            trailing: IconButton(
-                                icon: Icon(
-                                    isFavourite(k) ? Icons.favorite : Icons.favorite_border,
-                                    color: isFavourite(k) ? Colors.red : null,
-                                    semanticLabel: isFavourite(k) ? 'Remove from favourites' : 'Add to favourites'
-                                ),
-                                onPressed: () {
-                                    setState(() {
-                                        if (isFavourite(k)) {
-                                            _favourites.remove(k);
-                                        } else {
-                                            _favourites.add(k);
+                indexData.forEach((category, map) {
+                    if (category != 'blackouts') {
+
+                        map.forEach((group, map) {
+                            map.forEach((k, v) {
+                                if (_favourites.contains(k)) {
+                                    navigationList.add(ListTile(
+                                        title: Text(
+                                            v,
+                                            style: Theme.of(context).textTheme.subtitle1
+                                        ),
+                                        trailing: IconButton(
+                                            icon: Icon(
+                                                isFavourite(k) ? Icons.favorite : Icons.favorite_border,
+                                                color: isFavourite(k) ? Colors.red : null,
+                                                semanticLabel: isFavourite(k) ? 'Remove from favourites' : 'Add to favourites'
+                                            ),
+                                            onPressed: () {
+                                                setState(() {
+                                                    if (isFavourite(k)) {
+                                                        _favourites.remove(k);
+                                                    } else {
+                                                        _favourites.add(k);
+                                                    }
+                                                });
+                                                preferences.then((prefs) => prefs.setStringList('favourites', _favourites));
+                                            }
+                                        ),
+                                        dense: false,
+                                        onTap: () {
+                                            Navigator.pushNamed(
+                                                context,
+                                                GuidelineContainer.routeName,
+                                                arguments: {
+                                                    'guideline': k,
+                                                    'showCommercialStandard': false
+                                                }
+                                            ).then((_) {
+                                                preferences.then((prefs) {
+                                                    setState(() {
+                                                        _favourites = prefs.getStringList('favourites') ?? [];
+                                                    });
+                                                });
+                                            });
                                         }
-                                    });
-                                    preferences.then((prefs) => prefs.setStringList('favourites', _favourites));
+                                    ));
                                 }
-                            ),
-                            dense: false,
-                            onTap: () {
-                                Navigator.pushNamed(
-                                    context,
-                                    GuidelineContainer.routeName,
-                                    arguments: {
-                                        'guideline': k,
-                                        'showCommercialStandard': false
-                                    }
-                                ).then((_) {
-                                    preferences.then((prefs) {
-                                        setState(() {
-                                            _favourites = prefs.getStringList('favourites') ?? [];
-                                        });
-                                    });
-                                });
-                            }
-                        ));
+                            });
+                        });
                     }
                 });
                 if (navigationList.isEmpty) {

@@ -1,5 +1,5 @@
 categories: [cardiovascular]
-group: structural_heart_disease
+group: structural
 name: Valvular Heart Disease
 private:
     non_driving_period:

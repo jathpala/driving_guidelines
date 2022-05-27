@@ -5,7 +5,6 @@ A simple app for looking at medical guidelines for assessing fitness to drive in
 ### TODO:
 
  - Fill out all the available guidelines
- - Organise guidelines by subject
  - Publish on android!
  - Test on apple
  - Publish on apple!
