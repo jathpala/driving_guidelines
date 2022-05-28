@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="au.org.prometheus.driving_guidelines">
    <application
-        android:label="Driving Guidelines"
+        android:label="Australian Driving Guidelines"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
