@@ -1,0 +1,31 @@
+categories: [other]
+group: substance_abuse
+name: Substance Abuse
+private:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Substance use is not at an extent likely to impair safe driving
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating doctor
+        criteria:
+            - Involved in a treatment program and in remission for at least one month
+            - No congnitive impairments relevant to driving
+            - No end-organ effects that impact on driving
+commercial:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Substance use is not at an extent likely to impair safe driving
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating specialist
+        criteria:
+            - Involved in a treatment program and in remission for at least three months
+            - No congnitive impairments relevant to driving
+            - No end-organ effects that impact on driving

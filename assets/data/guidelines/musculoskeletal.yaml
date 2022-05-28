@@ -1,0 +1,36 @@
+categories: [other]
+group: musculoskeletal
+name: Muschuloskeletal Disorders
+private:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Driver is able to adequately perform all required driving activities
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: driver licencing authority
+        criteria:
+            - The nature of the driving task has been considered
+            - Information from treating doctor on need for prostheses or other devices is considered
+            - Where required, a practical driving assessment is performed
+            - Any required modifications have been made to the vehicle
+commercial:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Driver is able to adequately perform all required driving activities
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: driver licencing authority
+        criteria:
+            - The nature of the driving task has been considered
+            - Information from treating doctor on need for prostheses or other devices is considered
+            - Where required, a practical driving assessment is performed
+            - Any required modifications have been made to the vehicle
+note: >
+    All motorcyclists and commercials licence holders with a musculoskeletal
+    disability require a practical driver assessment.

@@ -30,13 +30,11 @@
       "deep_vein_thrombosis": "Deep Vein Thrombosis",
       "pulmonary_embolism": "Pulmonary Embolism"
     },
-    "syncope": {
-      "vasovagal_syncope": "Vasovagal Syncope",
-      "syncope_with_unknown_cause": "Syncope with Unknown Cause",
-      "cardiac_syncope": "Cardiac Syncope"
-    },
     "risk_factors": {
       "hypertension": "Hypertension"
+    },
+    "syncope": {
+      "cardiac_syncope": "Cardiac Syncope"
     }
   },
   "blackouts": {
@@ -50,21 +48,40 @@
       "cardiac_syncope": "Cardiac Syncope"
     }
   },
-  "endocrine": {
+  "other": {
+    "visual_disorders": {
+      "diplopia": "Diplopia",
+      "visual_fields": "Visual Field Defects",
+      "visual_acuity": "Visual Acuity",
+      "monocular_vision": "Monocular Vision"
+    },
     "diabetes": {
       "diabetes_mellitus_non_insulin": "Diabetes Mellitus, Treated with Non-insulin Medication",
       "diabetes_mellitus_insulin": "Diabetes Mellitus, Treated with Insulin",
       "diabetes_mellitus_lifestyle": "Diabetes Mellitus, Treated without Medication"
-    }
-  },
-  "other": {
+    },
+    "sleep_disorders": {
+      "sleep_apnoea": "Sleep Apnoea",
+      "narcolepsy": "Narcolepsy"
+    },
+    "psychiatry": {
+      "psychiatric": "Psychiatric Conditions"
+    },
     "medication": {
       "anticoagulation": "Anticoagulation"
-    }
-  },
-  "audiology": {
+    },
+    "syncope": {
+      "vasovagal_syncope": "Vasovagal Syncope",
+      "syncope_with_unknown_cause": "Syncope with Unknown Cause"
+    },
     "hearing_loss": {
       "hearing_loss": "Hearing Loss"
+    },
+    "musculoskeletal": {
+      "musculoskeletal": "Muschuloskeletal Disorders"
+    },
+    "substance_abuse": {
+      "substance_abuse": "Substance Abuse"
     }
   }
 }

@@ -102,17 +102,11 @@ class _IndexState extends State<Index> {
             case 'cardiovascular':
                 categoryName = 'Cardiovascular';
                 break;
-            case 'endocrine':
-                categoryName = 'Endocrine';
-                break;
             case 'blackouts':
                 categoryName = 'Syncope';
                 break;
             case 'other':
                 categoryName = 'Other';
-                break;
-            case 'audiology':
-                categoryName = 'Hearing';
                 break;
             default:
                 categoryName = 'Uncategorised';
@@ -160,7 +154,7 @@ class _IndexState extends State<Index> {
                 var indexData = futureData.data;
                 List<ExpansionPanel> navigationList = [];
                 _panelIsOpen ??= List.filled(indexData.length, false);
-                const categories = ['blackouts', 'cardiovascular', 'endocrine', 'audiology', 'other'];
+                const categories = ['blackouts', 'cardiovascular', 'other'];
                 var i = 0;
                 for (var category in categories) {
                     navigationList.add(buildCategory(category, indexData[category], i, context));
