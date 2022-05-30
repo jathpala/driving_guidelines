@@ -4,18 +4,14 @@
 import 'package:flutter/material.dart';
 
 import 'src/style.dart';
-import 'src/widgets/index.dart';
-import 'src/widgets/information.dart';
-import 'src/widgets/favourites.dart';
-import 'src/widgets/guideline_container.dart';
-
+import 'src/main_window.dart';
 
 void main() {
-    runApp(const MyApp());
+    runApp(const DrivingGuidelines());
 }
 
-class MyApp extends StatelessWidget {
-    const MyApp({Key? key}) : super(key: key);
+class DrivingGuidelines extends StatelessWidget {
+    const DrivingGuidelines({Key? key}) : super(key: key);
 
     // Application root.
     @override
@@ -23,14 +19,18 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             title: 'Driving Guidelines',
             theme: defaultTheme,
-            initialRoute: Index.routeName,
+            //initialRoute: Index.routeName,
             onGenerateRoute: (RouteSettings settings) {
                 MaterialPageRoute? route;
                 switch (settings.name) {
-                    case '/':
-                        route = null;
+                    case MainWindow.routeName:
+                        route = MaterialPageRoute(
+                            builder: (context) {
+                                return const MainWindow();
+                            }
+                        );
                         break;
-                    case Index.routeName:
+                    /*case Index.routeName:
                         route = MaterialPageRoute(
                             builder: (context) {
                                 return const Index();
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
                     default:
                         assert(false, 'Need to implement ${settings.name}');
                         route = null;
-                        break;
+                        break;*/
                 }
                 return route;
             }
