@@ -5,7 +5,8 @@ private:
     non_driving_period: 4 weeks
     unconditional_licence:
         allowed: true
-        criteria: The condition is not severe enough to cause syncope without warning
+        criteria:
+            - The condition is not severe enough to cause syncope without warning
     conditional_licence:
         allowed: true
         review: periodic
