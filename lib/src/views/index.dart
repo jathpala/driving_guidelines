@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../style.dart';
 import '../models/index_model.dart';
+import '../models/preferences_model.dart';
 
 class Index extends StatefulWidget {
     const Index({ Key? key }): super(key: key);
@@ -20,31 +21,113 @@ class Index extends StatefulWidget {
 class _IndexState extends State<Index> {
     _IndexState();
 
-    /*late Future<IndexData> index;
-    late Future<SharedPreferences> preferences;
-    List<String> _favourites = [];
     List<bool>? _panelIsOpen;
 
-    @override
-    void initState() {
-        super.initState();
-        index = IndexData.load();
-        preferences = SharedPreferences.getInstance();
-        preferences.then((prefs) {
-            var favourites = prefs.getStringList('favourites');
-            if (favourites != null) {
-                _favourites.addAll(favourites);
-            }
-        });
+    List<ListTile> buildPanelGroup(BuildContext context, PreferencesModel preferences, Map<String, String> guidelines) {
+        var sortedKeys = guidelines.keys.toList()..sort();
+        List<ListTile> navigationList = [];
+        for (var id in sortedKeys) {
+            navigationList.add(ListTile(
+                title: Text(
+                    guidelines[id]!,
+                    style: Theme.of(context).textTheme.subtitle1
+                ),
+                trailing: IconButton(
+                    icon: Icon(
+                        preferences.favourites.contains(id) ? Icons.favorite : Icons.favorite_border,
+                        color: preferences.favourites.contains(id) ? Colors.red : null
+                    ),
+                    onPressed: () {
+                        preferences.toggleFavourite(id);
+                    }
+                ),
+                dense: false,
+                onTap: () {
+                    Navigator.pushNamed(
+                        context,
+                        '/guideline', // Make thie Guideline.routeName
+                        arguments: {
+                            'guideline': id,
+                            'showCommercialStandard': false
+                        }
+                    ); //.then((_) {
+//                        preferences.then((prefs) {
+//                            setState(() {
+//                                _favourites = prefs.getStringList('favourites') ?? [];
+//                            });
+//                        });
+                }
+            ));
+        }
+        return navigationList;
     }
-    */
+
+    List<Widget> buildPanelList(BuildContext context, PreferencesModel preferences, Map<String, Map<String, String>>? sortedGuidelines) {
+        List<Widget> navigationList = [];
+        var firstGroup = true;
+        sortedGuidelines?.forEach((group, guidelines) {
+            if (!firstGroup) {
+                navigationList.add(Divider());
+            }
+            navigationList.addAll(buildPanelGroup(context, preferences, guidelines));
+            firstGroup = false;
+        });
+        return navigationList;
+    }
+
+    ExpansionPanel buildPanel(BuildContext context, PreferencesModel preferences, int panelNumber, String categoryName, Map<String, Map<String, String>>? sortedGuidelines) {
+        return ExpansionPanel(
+            headerBuilder: (context, isOpen) {
+                return Container(
+                    child: Text(
+                        categoryName,
+                        style: Theme.of(context).textTheme.headline3
+                    ),
+                    padding: const EdgeInsets.only(
+                        top: 15,
+                        bottom: 15,
+                        left: 20,
+                        right: 20
+                    )
+                );
+            },
+            body: Column(
+                children: buildPanelList(context, preferences, sortedGuidelines)
+            ),
+            canTapOnHeader: true,
+            isExpanded: _panelIsOpen![panelNumber]
+        );
+    }
+
+    List<ExpansionPanel> buildPanels(BuildContext context, IndexModel index, PreferencesModel preferences) {
+        List<ExpansionPanel> panelList = [];
+        var categories = {
+            'blackouts': 'Syncope',
+            'cardiovascular': 'Cardiovascular',
+            'other': 'Other'
+        };
+        _panelIsOpen ??= List.filled(categories.length, false);
+        var i = 0;
+        for (var c in categories.keys.toList()) {
+            panelList.add(buildPanel(context, preferences, i, categories[c]!, index.sortedGuidelines[c]));
+            i++;
+        }
+        return panelList;
+    }
 
     @override
     Widget build(BuildContext context) {
-        return Consumer<IndexModel>(
-            builder: (context, index, child) {
-                return Center(
-                    child: Text(index.guidelines['coronary_artery_bypass_grafting']?.name ?? 'No name')
+        return Consumer2<IndexModel, PreferencesModel>(
+            builder: (context, index, preferences, child) {
+                return SingleChildScrollView(
+                    child: ExpansionPanelList(
+                        children: buildPanels(context, index, preferences),
+                        expansionCallback: (i, isOpen) {
+                            setState(() {
+                                _panelIsOpen?[i] = !isOpen;
+                            });
+                        }
+                    )
                 );
             }
         );

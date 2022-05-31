@@ -38,5 +38,16 @@ void main() {
         encoder.convert(index)
     );
 
-    print('Generated index at $outfile with ${index.length} guidelines.');
+    var categories = <String>{};
+    index.forEach((k, v) {
+        (v['categories'] as List<dynamic>).forEach((c) {
+            categories.add(c);
+        });
+    });
+
+    print('\nGenerated index at $outfile with ${index.length} guidelines.');
+    print('\nCategories:');
+    for (var c in categories) {
+        print(' $c');
+    }
 }

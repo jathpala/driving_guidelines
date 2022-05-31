@@ -5,37 +5,45 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'guideline_model.dart';
 
 class IndexModel extends ChangeNotifier {
     IndexModel() {
-        load();
+        loadIndex();
     }
 
     static const _indexFile = 'assets/guidelines/index.json';
 
     Map<String, GuidelineModel> guidelines = {};
+    Map<String, Map<String, Map<String, String>>> sortedGuidelines = {};
 
     // Add a guideline entry to the list
     void add(String id, String name, List<String> categories, String group) {
+
+        // Add to the main, flat guidelines map
         guidelines[id] = GuidelineModel(
             id: id,
             name: name,
             categories: categories,
             group: group
         );
-        notifyListeners();
-    }
 
-    // Remove a guideline entry from the list
-    void remove(String id) {
-        guidelines.remove(id);
-        notifyListeners();
+        // Add to the nested guidelines map suited for the index view
+        for (var category in categories) {
+            if (!sortedGuidelines.containsKey(category)) {
+                sortedGuidelines[category] = {};
+            }
+            if (!sortedGuidelines[category]!.containsKey(group)) {
+                sortedGuidelines[category]![group] = {};
+            }
+            sortedGuidelines[category]![group]![id] = name;
+        }
     }
 
     // Reads the index file and adds all entries to the guidelines list
-    void load() async {
+    void loadIndex() async {
         String doc = await rootBundle.loadString(_indexFile);
         final json = jsonDecode(doc);
         json.forEach((id, data) {
@@ -43,5 +51,6 @@ class IndexModel extends ChangeNotifier {
             // List<dynamic> to List<String>
             add(id, data['name'], (data['categories'] as List).map((c) => c.toString()).toList(), data['group']);
         });
+        notifyListeners();
     }
 }

@@ -2,13 +2,11 @@
 /// Licensed under the GNU General Public License (version 3).
 
 import 'package:flutter/material.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
 import 'models/main_window_model.dart';
 import 'models/index_model.dart';
-
 import 'views/index.dart';
 //import 'views/navigation.dart';
 import 'views/components/main_nav_bar.dart';
@@ -27,22 +25,6 @@ class MainWindow extends StatefulWidget {
 
 class _MainWindowState extends State<MainWindow> {
     _MainWindowState();
-
-    //late Future<IndexData> index;
-    //late Future<SharedPreferences> preferences;
-
-    /*@override
-    void initState() {
-        super.initState();
-        index = IndexData.load();
-        preferences = SharedPreferences.getInstance();
-        preferences.then((prefs) {
-            var favourites = prefs.getStringList('favourites');
-            if (favourites != null) {
-                _favourites.addAll(favourites);
-            }
-        });
-    }*/
 
     @override
     Widget build(BuildContext context) {
