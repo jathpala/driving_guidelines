@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../style.dart';
-import '../../main_window.dart';
+import 'package:driving_guidelines/src/style.dart';
+import 'package:driving_guidelines/src/models/main_window_model.dart';
 
 class MainNavBar extends StatelessWidget {
     const MainNavBar({ Key? key }): super(key: key);
 
     @override
     Widget build(BuildContext context) {
-        return Consumer<MainWindowViewModel>(
+        return Consumer<MainWindowModel>(
             builder: (context, view, child) {
                 return BottomNavigationBar(
                     items: const [

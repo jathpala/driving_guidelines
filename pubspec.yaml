@@ -64,6 +64,7 @@ flutter:
     - assets/data/guidelines/
     - assets/data/information.html
     - assets/driver_license.png
+    - assets/guidelines/
     - assets/icons/
 
   # The following line ensures that the Material Icons font is

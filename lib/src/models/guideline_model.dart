@@ -5,6 +5,30 @@ import 'package:flutter/services.dart';
 
 import 'package:yaml/yaml.dart';
 
+class GuidelineModel {
+    GuidelineModel({
+        required this.id,
+        required this.name,
+        required this.categories,
+        required this.group,
+        this.isFavourite = false,
+        this.data
+    });
+
+    final String id;
+
+    final String name;
+
+    final List<String> categories;
+
+    final String group;
+
+    bool isFavourite;
+
+    dynamic? data;
+}
+
+/*
 class GuidelineData {
     GuidelineData._(this.data);
 
@@ -20,3 +44,4 @@ class GuidelineData {
         return GuidelineData._(yaml);
     }
 }
+*/

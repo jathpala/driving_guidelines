@@ -1,0 +1,28 @@
+categories: [cardiovascular]
+group: ischaemic_heart_disease
+name: Myocardial Infarction
+private:
+    non_driving_period: 2 weeks
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating doctor
+        criteria:
+            - Satisfactory response to treatment
+            - Minimal symptoms relevant to driving
+commercial:
+    non_driving_period: 4 weeks
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: annual
+        reviewer: treating specialist
+        criteria:
+            - Satisfactory response to treatment
+            - Exercise tolerance >90% prediced on stress test
+            - No evidence severe ischaemia on stress test
+            - Left ventricular EF >40%
+            - Minimal symptoms relevant to driving
+note: >
+    Where relevant, refer also to the guidelines on PCI or CABG.

@@ -2,8 +2,10 @@
 /// Licensed under the GNU General Public License (version 3).
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../style.dart';
+import '../models/index_model.dart';
 
 class Index extends StatefulWidget {
     const Index({ Key? key }): super(key: key);
@@ -39,8 +41,12 @@ class _IndexState extends State<Index> {
 
     @override
     Widget build(BuildContext context) {
-        return Center(
-            child: Text('The main index')
+        return Consumer<IndexModel>(
+            builder: (context, index, child) {
+                return Center(
+                    child: Text(index.guidelines['coronary_artery_bypass_grafting']?.name ?? 'No name')
+                );
+            }
         );
     }
 }
