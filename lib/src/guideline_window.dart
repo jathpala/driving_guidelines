@@ -9,7 +9,6 @@ import 'models/guideline_model.dart';
 import 'models/preferences_model.dart';
 import 'views/components/main_app_bar.dart';
 import 'views/components/main_nav_bar.dart';
-
 import 'widgets/guideline.dart';
 
 class GuidelineWindow extends StatefulWidget {
@@ -31,7 +30,7 @@ class _GuidelineWindowState extends State<GuidelineWindow> {
         return Container(
             child: SizedBox(
                 child: TabBar(
-                    tabs: [
+                    tabs: const [
                         Tab(text: 'Private'),
                         Tab(text: 'Commercial')
                     ],
@@ -75,7 +74,7 @@ class _GuidelineWindowState extends State<GuidelineWindow> {
             child: Consumer<GuidelineModel>(
                 builder: (context, guideline, child) => Scaffold(
                     appBar: MainAppBar(title: guideline.data?['name']),
-                    bottomNavigationBar: MainNavBar(GuidelineWindow.routeName),
+                    bottomNavigationBar: const MainNavBar(GuidelineWindow.routeName),
                     floatingActionButton: buildFavouritesButton(context),
                     body: DefaultTabController(
                         length: 2,
@@ -93,83 +92,3 @@ class _GuidelineWindowState extends State<GuidelineWindow> {
         );
     }
 }
-
-
-/*            Expanded(
-                // For now this stack isn't really used for anything
-                // It is here to allow FloatingGuidelineButtons
-                child: Stack(
-                    children: [
-                        TabBarView(
-                            children: [
-                                FutureBuilder(
-                                    future: guideline,
-                                    builder: privateGuidelineBuilder
-                                ),
-                                FutureBuilder(
-                                    future: guideline,
-                                    builder: commercialGuidelineBuilder
-                                )
-                            ]
-                        ),
-                    ]
-                )
-            )
-        ]
-    )
-*/
-
-
-
-/*
-
-
-    Widget privateGuidelineBuilder(BuildContext context, AsyncSnapshot<GuidelineData> snapshot) {
-        return guidelineBuilder(false, context, snapshot);
-    }
-
-    Widget commercialGuidelineBuilder(BuildContext context, AsyncSnapshot<GuidelineData> snapshot) {
-        return guidelineBuilder(true, context, snapshot);
-    }
-
-    Widget guidelineBuilder(bool showCommercialStandard, BuildContext context, AsyncSnapshot<GuidelineData> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.data == null) {
-                return const Placeholder();
-            } else {
-                GuidelineData guidelineData = snapshot.data!;
-                return Guideline(guidelineData, showCommercialStandard);
-            }
-        } else {
-            return const CircularProgressIndicator();
-        }
-    }
-
-    @override
-    Widget build(BuildContext context) {
-        return ChangeNotifierProvider(
-            create: (context) => GuidelineModel(),
-            child: Scaffold(
-                appBar: AppBar(
-                    title: FutureBuilder(
-                        future: guideline,
-                        builder: headingBuilder
-                    ),
-                    automaticallyImplyLeading: false,
-                    leading: null,
-                    actions: [
-                        Transform.scale(
-                            child: FavouriteButton(_isFavourite),
-                            scale: 1.2
-                        ),
-                        const OptionsMenu()
-                    ]
-                ),
-                bottomNavigationBar: const Navigation(GuidelineContainer.routeName),
-                body:
-                )
-            )
-        );
-    }
-}
-*/

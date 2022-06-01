@@ -68,7 +68,7 @@ class _IndexState extends State<Index> {
         var firstGroup = true;
         sortedGuidelines?.forEach((group, guidelines) {
             if (!firstGroup) {
-                navigationList.add(Divider());
+                navigationList.add(const Divider());
             }
             navigationList.addAll(buildPanelGroup(context, preferences, guidelines));
             firstGroup = false;

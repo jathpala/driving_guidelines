@@ -1,13 +1,8 @@
 /// Copyright 2022, Jath Palasubramaniam. All rights reserved.
 /// Licensed under the GNU General Public License (version 3).
 
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'guideline_model.dart';
 
 class PreferencesModel extends ChangeNotifier {
     PreferencesModel() {

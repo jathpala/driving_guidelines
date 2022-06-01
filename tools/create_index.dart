@@ -40,9 +40,9 @@ void main() {
 
     var categories = <String>{};
     index.forEach((k, v) {
-        (v['categories'] as List<dynamic>).forEach((c) {
+        for(var c in (v['categories'] as List<dynamic>)) {
             categories.add(c);
-        });
+        }
     });
 
     print('\nGenerated index at $outfile with ${index.length} guidelines.');

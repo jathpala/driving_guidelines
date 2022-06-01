@@ -42,10 +42,8 @@ class DrivingGuidelines extends StatelessWidget {
                             break;
                         case GuidelineWindow.routeName:
                             final guideline = (settings.arguments as Map)['guideline'] as String;
-                            final showCommercialStandard = (settings.arguments as Map)['showCommercialStandard'] as bool;
                             route = MaterialPageRoute(
                                 builder: (context) {
-                                    //return GuidelineWindow(guideline, showCommercialStandard);
                                     return GuidelineWindow(guideline);
                                 }
                             );

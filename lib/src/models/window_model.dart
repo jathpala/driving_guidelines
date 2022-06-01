@@ -3,8 +3,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
-
 import '../views/index.dart';
 //import 'views/navigation.dart';
 
@@ -27,7 +25,7 @@ class WindowModel extends ChangeNotifier {
     String title = '';
 
     /// View to be displayed in the main window
-    Widget mainWindowBody = Placeholder();
+    Widget mainWindowBody = const Placeholder();
 
     void setIndex(index) {
         this.index = index;
@@ -35,7 +33,7 @@ class WindowModel extends ChangeNotifier {
         switch (index) {
             case 0:
                 title = 'Driving Guidelines';
-                mainWindowBody = Index();
+                mainWindowBody = const Index();
                 break;
             //case 1:
             //    view = Favourites();
@@ -44,7 +42,7 @@ class WindowModel extends ChangeNotifier {
             //    view = Information();
             //    break;
             default:
-                mainWindowBody = Placeholder();
+                mainWindowBody = const Placeholder();
                 break;
         }
 
