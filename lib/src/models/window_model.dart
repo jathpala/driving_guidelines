@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 
 import '../views/index.dart';
+import '../views/favourites.dart';
 import '../views/information.dart';
 
 
@@ -34,9 +35,10 @@ class WindowModel extends ChangeNotifier {
                 title = Index.title;
                 mainWindowBody = const Index();
                 break;
-            //case 1:
-            //    view = Favourites();
-            //    break;
+            case 1:
+                title = Favourites.title;
+                mainWindowBody = Favourites();
+                break;
             case 2:
                 title = Information.title;
                 mainWindowBody = Information();

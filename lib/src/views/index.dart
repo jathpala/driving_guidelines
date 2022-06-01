@@ -52,7 +52,6 @@ class _IndexState extends State<Index> {
                                 GuidelineWindow.routeName,
                                 arguments: {
                                     'guideline': id,
-                                    'showCommercialStandard': false
                                 }
                             );
                         }
