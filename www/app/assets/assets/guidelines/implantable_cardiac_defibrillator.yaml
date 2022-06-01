@@ -1,0 +1,26 @@
+categories: [cardiovascular]
+group: rhythm_disorders
+name: Implantable Cardiac Defibrillator
+private:
+    non_driving_period:
+        - duration: 2 weeks
+          criteria: Primary prevention ICD
+        - duration: 6 months
+          criteria: Secondary prevention ICD
+        - duration: 2 weeks
+          criteria: Generator change
+        - duration: 4 weeks
+          criteria: ICD therapy delivered with haemodynamic compromise (see below)
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating specialist
+        criteria:
+            - Minimal symptoms relevant to driving
+commercial:
+    non_driving_period: null
+    unconditional_licence: false
+    conditional_licence: false
+note: >
+    If ICD therapy results in syncope, refer to the section on cardiac syncope.

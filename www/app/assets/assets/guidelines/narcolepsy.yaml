@@ -1,0 +1,24 @@
+categories: [other]
+group: sleep_disorders
+name: Narcolepsy
+private:
+    non_driving_period: null
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating specialist
+        criteria:
+            - Consideration given to nature of the driving task
+commercial:
+    non_driving_period: 6 months
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating specialist
+        criteria:
+            - No history of cataplexy
+            - Medication is taken regularly
+            - No episodes in the last 6 months
+            - Normal sleep latency on MWT (on or off medication)

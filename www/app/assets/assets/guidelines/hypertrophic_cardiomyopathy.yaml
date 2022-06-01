@@ -1,0 +1,28 @@
+categories: [cardiovascular]
+group: heart_failure
+name: Hypertrophic Cardiomyopathy
+private:
+    non_driving_period: null
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating specialist
+        criteria:
+            - Minimal symptoms relevant to driving
+            - No history of arryhthmias
+commercial:
+    non_driving_period: null
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: annual
+        reviewer: treating specialist
+        criteria:
+            - Minimal symptoms relevant to driving
+            - Left ventricular EF >40%
+            - Exercise tolerance >90% predicted on stres test
+            - No history of syncope
+            - Absence of severe LVH
+            - No family history of sudden cardiac death
+            - No ventricular arrhythmias on holter monitor
