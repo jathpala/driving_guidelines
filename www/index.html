@@ -6,9 +6,235 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <style type="text/css">
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600&display=swap");
+       @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+      body {
+        margin: 0;
+        font-family: "Montserrat", serif;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: #96B1AC;
+      }
+
+      div#frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc(100% - 10em);
+        height: calc(100% - 5em);
+        background-color: #FFFFFF;
+        border-radius: 40px;
+        box-shadow: 0px 0px 5px 10px white;
+      }
+
+      div#content {
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch;
+        flex-direction: row;
+        width: calc(100% - 40px - 20px - 10px);
+        height: calc(100% - 40px - 20px - 10px);
+        border-width: 4px;
+        border-style: solid;
+        border-color: #96B1AC;
+        border-radius: 40px;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      div.panel {
+        flex-basis: 0;
+        flex-grow: 1;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 2em;
+      }
+
+      div.divider {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #96B1AC;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-family: "Montserrat Alternates", serif;
+        font-weight: 500;
+        font-size: 2.6em;
+        margin-top: 0;
+        margin-bottom: 0.5em;
+        color: #26A69A;
+      }
+
+      h2 {
+        font-weight: 400;
+        font-size: 1.5em;
+        margin-top: 0;
+        margin-bottom: 0.5em;
+        font-style: italic;
+      }
+
+      h3 {
+        font-weight: 500;
+        font-size: 1.3em;
+        margin-top: 0em;
+        margin-bottom: 0.3em;
+        text-align: center;
+        font-style: italic;
+      }
+
+      div.pane {
+        flex-basis: 0;
+        flex-grow: 0;
+      }
+
+      div.pane.spacer {
+        flex-grow: 1;
+      }
+
+      div.pane.first {
+        margin-top: 1em;
+      }
+
+      div.footer {
+        flex-grow: 0;
+      }
+
+      div.footer p {
+        font-size: 0.8em;
+        margin-bottom: 0.4em;
+        font-weight: 300;
+        color: #777777;
+      }
+
+      div.link-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 1.2em;
+        margin-top: 0;
+        margin-bottom: 0.5em;
+        text-align: justify;
+        color: #555555;
+      }
+
+      a img {
+        display: block;
+        width: 200px;
+        height: auto;
+        box-shadow: 3px 3px 20px 2px #555555;
+        border-radius: 15px;
+      }
+
+      a img:hover {
+        filter: invert(10%);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      a:hover {
+        color: #6F96D4;
+        text-decoration: underline;
+      }
+
+      a.disabled p {
+        display: none;
+        text-align: center;
+      }
+
+      a.disabled:hover p {
+        display: block;
+        position: fixed;
+        margin-top: 0.2em;
+        width: 200px;
+        color: #cc8541;
+      }
+
+      a.button {
+        font-size: 1.4em;
+        font-weight: 500;
+        display: block;
+        width: 9em;
+        height: 2.5em;
+        line-height: 2.5em;
+        background-color: #26A69A;
+        text-align: center;
+        border-radius: 1.25em;
+        color: #FFFFFF;
+        box-shadow: 3px 3px 20px 2px #555555;
+      }
+
+      a.button:hover {
+        text-decoration: none;
+        filter: brightness(105%);
+      }
+    </style>
+
     <title>Austrlian Driving Guidelines</title>
   </head>
   <body>
-      <div><h1>Test</h1></div>
+    <main>
+      <div id="frame">
+        <div id="content">
+
+          <div class="panel">
+            <div class="pane spacer">
+              <h1>Australian Driving Guidelines</h1>
+              <h2>A quick and convenient reference on the medical standards for driver licencing</h2>
+            </div>
+
+            <div class="footer pane">
+              <p>Copyright &copy; 2022, Jath Palasubramaniam. Licenced under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU GPLv3.</a></p>
+              <p>Please note, this app is not endorsed by or in any way affiliated with Austroads or the authors of the <em>Assessing Fitness to Drive Guidelines</em>. The full guidelines offer much greater details than provided by the summaries in the app. Consult the full guidelines before conducting driving assessments.</p>
+            </div>
+          </div>
+
+          <div class="divider">
+          </div>
+
+          <div class="panel">
+            <div class="pane first">
+              <p>Based on the <em><a href="https://austroads.com.au/publications/assessing-fitness-to-drive/ap-g56">Assessing Fitness to Drive Guidelines</a></em> published by <a href="https://austroads.com.au/">Austroads</a></p>
+              <p>Free and open source software</p>
+            </div>
+
+            <div class="pane">
+              <h3>Download the App</h3>
+              <div class="link-bar">
+                <a href="javascript:void(0)" class="disabled"><img src="assets/google-play-badge.png" alt="Download for Android"><p>Coming Soon</p></a>
+                <a href="javascript:void(0)" class="disabled"><img src="assets/apple-app-store-badge.png" alt="Download for iOS"><p>Coming Soon</p></a>
+              </div>
+            </div>
+
+            <div class="pane">
+              <h3>Or</h3>
+              <div class="link-bar">
+                <a href="javascript:void(0)" class="button">Access Online</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
   </body>
 </html>

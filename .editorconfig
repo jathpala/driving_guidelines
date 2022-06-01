@@ -1,0 +1,14 @@
+root = true
+
+[*]
+end_of_line = lf
+
+[*.{js,dart}]
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+[*.{html,css,yml}]
+charset  = utf-8
+indent_style = space
+indent_size = 2
