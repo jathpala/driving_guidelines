@@ -37,11 +37,11 @@ class WindowModel extends ChangeNotifier {
                 break;
             case 1:
                 title = Favourites.title;
-                mainWindowBody = Favourites();
+                mainWindowBody = const Favourites();
                 break;
             case 2:
                 title = Information.title;
-                mainWindowBody = Information();
+                mainWindowBody = const Information();
                 break;
             default:
                 mainWindowBody = const Placeholder();

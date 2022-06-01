@@ -74,7 +74,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
             applicationVersion: 'v1.1.0',
             applicationLegalese: legalese,
             applicationIcon: Image.asset(
-                'assets/driver_license.png',
+                'assets/icons/app_logo_white_bg.png',
                 height: 35,
                 width: 35
             ),
@@ -111,7 +111,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         return Consumer<WindowModel>(
             builder: (context, view, child) {
                 return AppBar(
-                    title: Text(title ?? view.title),
+                    title: SingleChildScrollView(
+                        child: Text(title ?? view.title),
+                        scrollDirection: Axis.horizontal
+                    ),
                     automaticallyImplyLeading: false,
                     leading: null,
                     actions: [optionsMenu(context)]

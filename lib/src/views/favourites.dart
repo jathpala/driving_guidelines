@@ -8,7 +8,6 @@ import '../style.dart';
 import '../guideline_window.dart';
 import '../models/index_model.dart';
 import '../models/preferences_model.dart';
-import '../models/window_model.dart';
 
 
 class Favourites extends StatefulWidget {
@@ -69,7 +68,7 @@ class _FavouritesState extends State<Favourites> {
             } else {
                 navigationList.add(const Divider());
             }
-            for (var id in ids) {
+            for (var id in ids..sort()) {
                 navigationList.add(buildListItem(context, id, guidelines, preferences));
             }
         });
@@ -81,7 +80,7 @@ class _FavouritesState extends State<Favourites> {
 
         return Consumer2<IndexModel, PreferencesModel>(
             builder: (context, index, preferences, child) {
-                if (preferences.favourites.length == 0) {
+                if (preferences.favourites.isEmpty) {
                     // No favourites
                     return Center(
                         child: Text(
