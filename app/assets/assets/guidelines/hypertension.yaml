@@ -1,0 +1,31 @@
+categories: [cardiovascular]
+group: risk_factors
+name: Hypertension
+private:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria: BP is not consistently >200 systlic or >110 diastolic
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating doctor
+        criteria:
+            - BP is well controlled
+            - No medication side effects that impair safe driving
+            - No evidence of end-organ damage relevant to driving
+commercial:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria: BP is not consistently >170 systlic or >100 diastolic
+    conditional_licence:
+        allowed: true
+        review: annual
+        reviewer: treating specialist (see below)
+        criteria:
+            - Anti-hypertensive treatment is commenced and effective BP control is achieved over a four-week follow-up period
+            - No medication side effects that impair safe driving
+            - No evidence of end-organ damage relevant to driving
+note: >
+    For commercial licences, follow-up can be conducted by the treating GP if agreed upon by the specialist however the initial assessment must be conducted by a specialist.

@@ -1,0 +1,28 @@
+categories: [cardiovascular]
+group: rhythm_disorders
+name: Permanent Pacemaker
+private:
+    non_driving_period: 2 weeks
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating doctor
+        criteria:
+            - Satisfactory response to treatment
+            - Minimal symptoms relevant to driving
+commercial:
+    non_driving_period: 4 weeks
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: annual
+        reviewer: treating specialist
+        criteria:
+            - Satisfactory response to treatment
+            - Minimal symptoms relevant to driving
+            - Normal haemodynamic response to moderate exercise
+            - Risk of pacemaker dysfunction has been considered
+note: >
+    This guideline applies to patient's who require but have not yet had a
+    pacemaker implant.

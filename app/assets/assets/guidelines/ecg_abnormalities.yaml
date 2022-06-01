@@ -1,0 +1,33 @@
+categories: [cardiovascular]
+group: rhythm_disorders
+name: ECG Abnormalities
+private:
+    non_driving_period: 2 weeks
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Asymptomatic
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating doctor
+        criteria:
+            - Satisfactory response to treatment
+            - Minimal symptoms relevant to driving
+commercial:
+    non_driving_period: 3 months (see below)
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: annual
+        reviewer: treating specialist
+        criteria:
+            - Follow-up investigation has excluded underlying cardiac disease OR
+            - Satisfactor response to treatment
+            - Minimal symptoms relevant to driving
+note: >
+    The non-driving period can be waived where underlying cardiac disease has
+    been excluded and no treatment is required. Where the condition is
+    considered to be cured, the requirement for periodic review can be waived.
+    Refer also to the guidelines on cardiac arrhythmia, pacemakers and
+    defibrillators where relevant.

@@ -1,0 +1,24 @@
+categories: [cardiovascular]
+group: heart_failure
+name: Ventricular Assist Device
+private:
+    non_driving_period: 3 months
+    unconditional_licence: false
+    conditional_licence:
+        allowed: true
+        review: 6-monthly
+        reviewer: treating specialist
+        criteria:
+            - Device is a single LVAD or RVAD (not BiVAD/TAH)
+            - No equipment problems during the preceeding two weeks
+            - Anticaoagulation level is stable
+            - Medical condition is stable and satisfactorily controlled
+            - Minimal symptoms relevant to driving
+            - Patient is confident with regards to all VAD equipment
+commercial:
+    non_driving_period: null
+    unconditional_licence: false
+    conditional_licence: false
+note: >
+    Consider a practical driver assessment where there are concerns of cognitive
+    or neurological impairment.

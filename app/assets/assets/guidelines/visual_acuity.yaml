@@ -1,0 +1,29 @@
+categories: [other]
+group: visual_disorders
+name: Visual Acuity
+private:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Uncorrected visual acuity in best eye is at least 6/12
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: null
+        criteria:
+            - The above standard is met with corrective lenses
+commercial:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Uncorrected visual acuity in best eye is at least 6/9 and is at least 6/18 in the other eye
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: null
+        criteria:
+            - The above standard is met with corrective lenses
+note: >
+    For commercial licenses, if the visual acuity in the best eye is at least 6/9 in the best eye (with or without lenses) then the driver licencing authority may grant a conditional licence based on information provided by the treating specialist.

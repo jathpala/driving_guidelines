@@ -1,0 +1,36 @@
+categories: [cardiovascular, blackouts]
+group: rhythm_disorders
+name: Cardiac Arrhythmias
+private:
+    non_driving_period: null
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - No syncope or near-syncope
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating doctor
+        criteria:
+            - Satisfactory response to treatment
+            - Minimal symptoms relevant to driving
+            - Normal haemodynamic response to moderate exercise
+commercial:
+    non_driving_period: 4 weeks
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - No syncope or near-syncope
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating specialist
+        criteria:
+            - Satisfactory response to treatment
+            - Minimal symptoms relevant to driving
+            - Normal haemodynamic response to moderate exercise
+note: >
+    Where the condition is considered to be cured, the requirement for periodic
+    review can be waived. This guideline does not cover atrial fibrillation;
+    refer to the relevant guideline instead. This guideline does cover atrial
+    flutter. Refer also to the guidelines on anticoagulation where relevant.

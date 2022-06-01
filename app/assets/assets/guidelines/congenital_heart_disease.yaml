@@ -1,0 +1,26 @@
+categories: [cardiovascular]
+group: structural
+name: Congenital Heart Disease
+private:
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Non-complex congenital heart disease
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating specialist
+        criteria:
+            - Minimal symptoms relevant to driving
+commercial:
+    unconditional_licence:
+        allowed: true
+        criteria:
+            - Non-complex congenital heart disease
+    conditional_licence:
+        allowed: true
+        review: periodic
+        reviewer: treating specialist
+        criteria:
+            - Minimal symptoms relevant to driving
+            - Minor congenital heart disorder of no haemodynamic significance
