@@ -9,14 +9,10 @@ import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'index.dart';
-import 'navigation.dart';
-import 'options_menu.dart';
-
 class Information extends StatefulWidget {
     const Information({ Key? key }): super(key: key);
 
-    static const routeName = '/information';
+    static const title = 'Information';
 
     @override
     State<Information> createState() => _InformationState();
@@ -49,31 +45,13 @@ class _InformationState extends State<Information> {
 
     @override
     Widget build(BuildContext context) {
-        return WillPopScope(
-            onWillPop: () async {
-                Navigator.pushReplacementNamed(
-                    context,
-                    Index.routeName
-                );
-                return false;
+        return WebView(
+            initialUrl: 'about:blank',
+            onWebViewCreated: (WebViewController webViewController) {
+                _controller = webViewController;
+                _loadHtml();
             },
-            child: Scaffold(
-                appBar: AppBar(
-                    title: const Text('Information'),
-                    automaticallyImplyLeading: false,
-                    leading: null,
-                    actions: const [OptionsMenu()]
-                ),
-                bottomNavigationBar: const Navigation(Information.routeName),
-                body: WebView(
-                    initialUrl: 'about:blank',
-                    onWebViewCreated: (WebViewController webViewController) {
-                        _controller = webViewController;
-                        _loadHtml();
-                    },
-                    navigationDelegate: _launchUrl
-                )
-            )
+            navigationDelegate: _launchUrl
         );
     }
 }

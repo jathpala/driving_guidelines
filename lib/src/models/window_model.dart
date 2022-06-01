@@ -4,8 +4,7 @@
 import 'package:flutter/material.dart';
 
 import '../views/index.dart';
-//import 'views/navigation.dart';
-
+import '../views/information.dart';
 
 
 /// Allows child widgets to control elements of the main window
@@ -32,15 +31,16 @@ class WindowModel extends ChangeNotifier {
 
         switch (index) {
             case 0:
-                title = 'Driving Guidelines';
+                title = Index.title;
                 mainWindowBody = const Index();
                 break;
             //case 1:
             //    view = Favourites();
             //    break;
-            //case 2:
-            //    view = Information();
-            //    break;
+            case 2:
+                title = Information.title;
+                mainWindowBody = Information();
+                break;
             default:
                 mainWindowBody = const Placeholder();
                 break;
