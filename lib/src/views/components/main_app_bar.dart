@@ -10,7 +10,9 @@ import '../../models/window_model.dart';
 
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-    const MainAppBar({ Key? key }): super(key: key);
+    const MainAppBar({ Key? key, this.title }): super(key: key);
+
+    final String? title;
 
     @override
     Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -109,7 +111,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         return Consumer<WindowModel>(
             builder: (context, view, child) {
                 return AppBar(
-                    title: Text(view.title),
+                    title: Text(title ?? view.title),
                     automaticallyImplyLeading: false,
                     leading: null,
                     actions: [optionsMenu(context)]

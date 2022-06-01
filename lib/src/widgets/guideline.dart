@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../guideline_data.dart';
+import '../models/guideline_model.dart';
 import '../style.dart';
 
 import 'guideline_licence.dart';
@@ -14,14 +14,14 @@ import 'guideline_note.dart';
 class Guideline extends StatelessWidget {
     const Guideline(this.guidelineData, this.showCommercialStandard, { Key? key }): super(key: key);
 
-    final GuidelineData guidelineData;
+    final GuidelineModel guidelineData;
     final bool showCommercialStandard;
 
     @override
     Widget build(BuildContext context) {
         final List<Widget> sections = [];
         String standard = showCommercialStandard ? 'commercial' : 'private';
-        if ((guidelineData.data[standard]) == null) {
+        if ((guidelineData.data?[standard]) == null) {
             // No driving standards
             sections.add(Column(
                 children: [
@@ -36,11 +36,11 @@ class Guideline extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start
             ));
         } else {
-            sections.add(GuidelineNonDriving(guidelineData.data[standard]['non_driving_period']));
-            sections.add(GuidelineLicence(guidelineData.data[standard]['unconditional_licence'], GuidelineLicence.unconditional));
-            sections.add(GuidelineLicence(guidelineData.data[standard]['conditional_licence'], GuidelineLicence.conditional));
+            sections.add(GuidelineNonDriving(guidelineData.data?[standard]['non_driving_period']));
+            sections.add(GuidelineLicence(guidelineData.data?[standard]['unconditional_licence'], GuidelineLicence.unconditional));
+            sections.add(GuidelineLicence(guidelineData.data?[standard]['conditional_licence'], GuidelineLicence.conditional));
         }
-        sections.add(GuidelineNote(guidelineData.data['note']));
+        sections.add(GuidelineNote(guidelineData.data?['note']));
         return Container(
             child: ListView(
                 children: sections

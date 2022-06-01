@@ -46,7 +46,7 @@ class DrivingGuidelines extends StatelessWidget {
                             route = MaterialPageRoute(
                                 builder: (context) {
                                     //return GuidelineWindow(guideline, showCommercialStandard);
-                                    return GuidelineWindow('coronary_artery_bypass_grafting');
+                                    return GuidelineWindow(guideline);
                                 }
                             );
                             break;

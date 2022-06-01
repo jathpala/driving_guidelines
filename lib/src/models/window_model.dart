@@ -44,7 +44,7 @@ class WindowModel extends ChangeNotifier {
             //    view = Information();
             //    break;
             default:
-                mainWindowBody = Center(child: CircularProgressIndicator());
+                mainWindowBody = Placeholder();
                 break;
         }
 

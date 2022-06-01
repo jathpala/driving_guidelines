@@ -4,9 +4,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'style.dart';
 import 'models/guideline_model.dart';
+import 'models/preferences_model.dart';
 import 'views/components/main_app_bar.dart';
 import 'views/components/main_nav_bar.dart';
+
+import 'widgets/guideline.dart';
 
 class GuidelineWindow extends StatefulWidget {
     const GuidelineWindow(this.id, { Key? key }): super(key: key);
@@ -23,105 +27,102 @@ class GuidelineWindow extends StatefulWidget {
 class _GuidelineWindowState extends State<GuidelineWindow> {
     _GuidelineWindowState();
 
+    Widget buildTabBar(BuildContext context) {
+        return Container(
+            child: SizedBox(
+                child: TabBar(
+                    tabs: [
+                        Tab(text: 'Private'),
+                        Tab(text: 'Commercial')
+                    ],
+                    // Effectively hide the indicator
+                    indicatorWeight: 0.001,
+                    indicatorColor: Theme.of(context).navBarColor
+                ),
+                height: kToolbarHeight
+            ),
+            color: Theme.of(context).navBarColor
+        );
+    }
+
+    Widget buildBody(BuildContext context, GuidelineModel guideline) {
+        return Expanded(child: TabBarView(
+            children: [
+                Guideline(guideline, false),
+                Guideline(guideline, true)
+            ]
+        ));
+    }
+
+    Widget buildFavouritesButton(BuildContext context) {
+        return Consumer<PreferencesModel>(
+            builder: (context, preferences, child) {
+                return FloatingActionButton(
+                    child: preferences.favourites.contains(widget.id) ?
+                        Icon(Icons.favorite, color: Colors.red[700]) :
+                        Icon(Icons.favorite_border, color: Theme.of(context).navBarUnselectedColor),
+                    onPressed: () => preferences.toggleFavourite(widget.id),
+                    backgroundColor: Theme.of(context).navBarColor
+                );
+            }
+        );
+    }
+
     @override
     Widget build(BuildContext context) {
         return ChangeNotifierProvider(
             create: (context) => GuidelineModel(widget.id),
-            child: Scaffold(
-                appBar: MainAppBar(),
-                bottomNavigationBar: MainNavBar(GuidelineWindow.routeName),
-                body: Center(child: Text("Hello"))
+            child: Consumer<GuidelineModel>(
+                builder: (context, guideline, child) => Scaffold(
+                    appBar: MainAppBar(title: guideline.data?['name']),
+                    bottomNavigationBar: MainNavBar(GuidelineWindow.routeName),
+                    floatingActionButton: buildFavouritesButton(context),
+                    body: DefaultTabController(
+                        length: 2,
+                        initialIndex: 0,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                                buildTabBar(context),
+                                buildBody(context, guideline)
+                            ]
+                        )
+                    )
+                )
             )
         );
     }
 }
 
 
-
-
+/*            Expanded(
+                // For now this stack isn't really used for anything
+                // It is here to allow FloatingGuidelineButtons
+                child: Stack(
+                    children: [
+                        TabBarView(
+                            children: [
+                                FutureBuilder(
+                                    future: guideline,
+                                    builder: privateGuidelineBuilder
+                                ),
+                                FutureBuilder(
+                                    future: guideline,
+                                    builder: commercialGuidelineBuilder
+                                )
+                            ]
+                        ),
+                    ]
+                )
+            )
+        ]
+    )
+*/
 
 
 
 /*
-import 'package:flutter/material.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../modles/guideline_model.dart';
-import '../style.dart';
-
-import 'favourite_button.dart';
-import 'guideline.dart';
-import 'navigation.dart';
-import 'options_menu.dart';
-
-class GuidelineContainer extends StatefulWidget {
-    const GuidelineContainer(this.id, this.showCommercialStandard, { Key? key }): super(key: key);
-
-    static const routeName = '/guideline';
-    final String id;
-    final bool showCommercialStandard;
-
-    static _GuidelineContainerState? of(BuildContext context) =>
-        context.findAncestorStateOfType<_GuidelineContainerState>();
-
-    @override
-    State<GuidelineContainer> createState() => _GuidelineContainerState();
-}
-
-
-class _GuidelineContainerState extends State<GuidelineContainer> {
-    _GuidelineContainerState();
-
-    Future<GuidelineData>? guideline;
-    late Future<SharedPreferences> preferences;
-    bool _isFavourite = false;
-
-    @override
-    void initState() {
-        super.initState();
-        guideline = GuidelineData.load(widget.id);
-        preferences = SharedPreferences.getInstance();
-        preferences.then((prefs) {
-            var favourites = prefs.getStringList('favourites');
-            if (favourites?.contains(widget.id) ?? false) {
-                setState(() {
-                    _isFavourite = true;
-                });
-            }
-        });
-    }
-
-    void toggleFavourite(bool isFavourite) {
-        preferences.then((prefs) {
-            var favourites = prefs.getStringList('favourites') ?? [];
-            if (isFavourite) {
-                favourites.add(widget.id);
-            } else {
-                favourites.remove(widget.id);
-            }
-            prefs.setStringList('favourites', favourites);
-            setState(() {
-                _isFavourite = isFavourite;
-            });
-        });
-    }
-
-    Widget headingBuilder(BuildContext context, AsyncSnapshot<GuidelineData> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.data == null) {
-                return const Placeholder();
-            } else {
-                GuidelineData guidelineData = snapshot.data!;
-                return SingleChildScrollView(
-                    child: Text(guidelineData.data['name']),
-                    scrollDirection: Axis.horizontal
-                );
-            }
-        } else {
-            return const Text('Loading...');
-        }
-    }
 
     Widget privateGuidelineBuilder(BuildContext context, AsyncSnapshot<GuidelineData> snapshot) {
         return guidelineBuilder(false, context, snapshot);
@@ -165,46 +166,7 @@ class _GuidelineContainerState extends State<GuidelineContainer> {
                     ]
                 ),
                 bottomNavigationBar: const Navigation(GuidelineContainer.routeName),
-                body: DefaultTabController(
-                    length: 2,
-                    initialIndex: 0,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                            Container(
-                                child: TabBar(
-                                    tabs: const [
-                                        Tab(text: 'Private'),
-                                        Tab(text:'Commercial')
-                                    ],
-                                    // Effectively hide the indicator
-                                    indicatorWeight: 0.001,
-                                    indicatorColor: Theme.of(context).navBarColor
-                                ),
-                                color: Theme.of(context).navBarColor
-                            ),
-                            Expanded(
-                                // For now this stack isn't really used for anything
-                                // It is here to allow FloatingGuidelineButtons
-                                child: Stack(
-                                    children: [
-                                        TabBarView(
-                                            children: [
-                                                FutureBuilder(
-                                                    future: guideline,
-                                                    builder: privateGuidelineBuilder
-                                                ),
-                                                FutureBuilder(
-                                                    future: guideline,
-                                                    builder: commercialGuidelineBuilder
-                                                )
-                                            ]
-                                        ),
-                                    ]
-                                )
-                            )
-                        ]
-                    )
+                body:
                 )
             )
         );
