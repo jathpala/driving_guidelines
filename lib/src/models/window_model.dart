@@ -12,8 +12,8 @@ import '../views/index.dart';
 
 /// Allows child widgets to control elements of the main window
 /// Used by the app bar and the nav bar
-class MainWindowModel extends ChangeNotifier {
-    MainWindowModel() {
+class WindowModel extends ChangeNotifier {
+    WindowModel() {
         setIndex(0);
     }
 
@@ -21,24 +21,21 @@ class MainWindowModel extends ChangeNotifier {
     /// 0 = Index
     /// 1 = Favourites
     /// 2 = Information
-    var _index = 0;
-    int get index => _index;
+    int index = 0;
 
     /// Title to be displayed in the app bar
-    var _title = '';
-    String get title => _title;
+    String title = '';
 
     /// View to be displayed in the main window
-    Widget _body = Placeholder();
-    Widget get body => _body;
+    Widget mainWindowBody = Placeholder();
 
     void setIndex(index) {
-        _index = index;
+        this.index = index;
 
         switch (index) {
             case 0:
-                _title = 'Driving Guidelines';
-                _body = Index();
+                title = 'Driving Guidelines';
+                mainWindowBody = Index();
                 break;
             //case 1:
             //    view = Favourites();
@@ -47,7 +44,7 @@ class MainWindowModel extends ChangeNotifier {
             //    view = Information();
             //    break;
             default:
-                _body = Placeholder();
+                mainWindowBody = Center(child: CircularProgressIndicator());
                 break;
         }
 

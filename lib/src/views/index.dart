@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../style.dart';
+import '../guideline_window.dart';
 import '../models/index_model.dart';
 import '../models/preferences_model.dart';
+import '../models/window_model.dart';
 
 class Index extends StatefulWidget {
     const Index({ Key? key }): super(key: key);
@@ -23,39 +25,38 @@ class _IndexState extends State<Index> {
 
     List<bool>? _panelIsOpen;
 
-    List<ListTile> buildPanelGroup(BuildContext context, PreferencesModel preferences, Map<String, String> guidelines) {
+    List<Widget> buildPanelGroup(BuildContext context, PreferencesModel preferences, Map<String, String> guidelines) {
         var sortedKeys = guidelines.keys.toList()..sort();
-        List<ListTile> navigationList = [];
+        List<Widget> navigationList = [];
         for (var id in sortedKeys) {
-            navigationList.add(ListTile(
-                title: Text(
-                    guidelines[id]!,
-                    style: Theme.of(context).textTheme.subtitle1
-                ),
-                trailing: IconButton(
-                    icon: Icon(
-                        preferences.favourites.contains(id) ? Icons.favorite : Icons.favorite_border,
-                        color: preferences.favourites.contains(id) ? Colors.red : null
-                    ),
-                    onPressed: () {
-                        preferences.toggleFavourite(id);
-                    }
-                ),
-                dense: false,
-                onTap: () {
-                    Navigator.pushNamed(
-                        context,
-                        '/guideline', // Make thie Guideline.routeName
-                        arguments: {
-                            'guideline': id,
-                            'showCommercialStandard': false
+            navigationList.add(Consumer<WindowModel>(
+                builder: (context, view, child) {
+                    return ListTile(
+                        title: Text(
+                            guidelines[id]!,
+                            style: Theme.of(context).textTheme.subtitle1
+                        ),
+                        trailing: IconButton(
+                            icon: Icon(
+                                preferences.favourites.contains(id) ? Icons.favorite : Icons.favorite_border,
+                                color: preferences.favourites.contains(id) ? Colors.red : Theme.of(context).navBarUnselectedColor
+                            ),
+                            onPressed: () {
+                                preferences.toggleFavourite(id);
+                            }
+                        ),
+                        dense: false,
+                        onTap: () {
+                            Navigator.pushNamed(
+                                context,
+                                GuidelineWindow.routeName,
+                                arguments: {
+                                    'guideline': id,
+                                    'showCommercialStandard': false
+                                }
+                            );
                         }
-                    ); //.then((_) {
-//                        preferences.then((prefs) {
-//                            setState(() {
-//                                _favourites = prefs.getStringList('favourites') ?? [];
-//                            });
-//                        });
+                    );
                 }
             ));
         }

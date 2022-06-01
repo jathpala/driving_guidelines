@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
-import 'models/main_window_model.dart';
+import 'models/window_model.dart';
 import 'models/index_model.dart';
 import 'views/index.dart';
 //import 'views/navigation.dart';
@@ -28,16 +28,13 @@ class _MainWindowState extends State<MainWindow> {
 
     @override
     Widget build(BuildContext context) {
-        return MultiProvider(
-            providers: [
-                ChangeNotifierProvider(create: (context) => MainWindowModel()),
-                ChangeNotifierProvider(create: (context) => IndexModel())
-            ],
+        return ChangeNotifierProvider(
+            create: (context) => IndexModel(),
             child: Scaffold(
                 appBar: MainAppBar(),
-                bottomNavigationBar: MainNavBar(),
-                body: Consumer<MainWindowModel>(
-                    builder: (context, view, child) => view.body
+                bottomNavigationBar: MainNavBar(MainWindow.routeName),
+                body: Consumer<WindowModel>(
+                    builder: (context, view, child) => view.mainWindowBody
                 )
             )
         );

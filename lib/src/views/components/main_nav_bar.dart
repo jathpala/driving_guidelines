@@ -6,14 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../style.dart';
-import '../../models/main_window_model.dart';
+import '../../main_window.dart';
+import '../../models/window_model.dart';
 
 class MainNavBar extends StatelessWidget {
-    const MainNavBar({ Key? key }): super(key: key);
+    const MainNavBar(this.route, { Key? key }): super(key: key);
+
+    final String route;
 
     @override
     Widget build(BuildContext context) {
-        return Consumer<MainWindowModel>(
+        return Consumer<WindowModel>(
             builder: (context, view, child) {
                 return BottomNavigationBar(
                     items: const [
@@ -30,13 +33,18 @@ class MainNavBar extends StatelessWidget {
                             label: 'Information'
                         )
                     ],
-                    selectedItemColor: (view.index != null)
+                    selectedItemColor: (route == MainWindow.routeName)
                         ? Theme.of(context).primaryColor
                         : Theme.of(context).navBarUnselectedColor,
                     unselectedItemColor: Theme.of(context).navBarUnselectedColor,
                     backgroundColor: Theme.of(context).navBarColor,
                     currentIndex: view.index,
-                    onTap: (index) => view.setIndex(index)
+                    onTap: (index) {
+                        view.setIndex(index);
+                        if (route != MainWindow.routeName) {
+                            Navigator.pop(context);
+                        }
+                    }
                 );
             }
         );

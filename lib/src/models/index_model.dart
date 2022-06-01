@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'guideline_model.dart';
-
 class IndexModel extends ChangeNotifier {
     IndexModel() {
         loadIndex();
@@ -16,19 +14,18 @@ class IndexModel extends ChangeNotifier {
 
     static const _indexFile = 'assets/guidelines/index.json';
 
-    Map<String, GuidelineModel> guidelines = {};
+    Map<String, Map<String, Object>> guidelines = {};
     Map<String, Map<String, Map<String, String>>> sortedGuidelines = {};
 
     // Add a guideline entry to the list
     void add(String id, String name, List<String> categories, String group) {
 
         // Add to the main, flat guidelines map
-        guidelines[id] = GuidelineModel(
-            id: id,
-            name: name,
-            categories: categories,
-            group: group
-        );
+        guidelines[id] = {};
+        guidelines[id]!['id'] = id;
+        guidelines[id]!['name'] = name;
+        guidelines[id]!['categories'] = categories;
+        guidelines[id]!['group'] = group;
 
         // Add to the nested guidelines map suited for the index view
         for (var category in categories) {

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../style.dart';
-import '../../models/main_window_model.dart';
+import '../../models/window_model.dart';
 
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -106,7 +106,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     @override
     Widget build(BuildContext context) {
-        return Consumer<MainWindowModel>(
+        return Consumer<WindowModel>(
             builder: (context, view, child) {
                 return AppBar(
                     title: Text(view.title),

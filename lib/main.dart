@@ -6,7 +6,10 @@ import 'package:provider/provider.dart';
 
 import 'src/style.dart';
 import 'src/main_window.dart';
+import 'src/guideline_window.dart';
+import 'src/models/window_model.dart';
 import 'src/models/preferences_model.dart';
+
 
 void main() {
     runApp(const DrivingGuidelines());
@@ -18,8 +21,11 @@ class DrivingGuidelines extends StatelessWidget {
     // Application root.
     @override
     Widget build(BuildContext context) {
-        return ChangeNotifierProvider(
-            create: (context) => PreferencesModel(),
+        return MultiProvider(
+            providers: [
+                ChangeNotifierProvider(create: (context) => WindowModel()),
+                ChangeNotifierProvider(create: (context) => PreferencesModel())
+            ],
             child: MaterialApp(
                 title: 'Driving Guidelines',
                 theme: defaultTheme,
@@ -34,40 +40,20 @@ class DrivingGuidelines extends StatelessWidget {
                                 }
                             );
                             break;
-                        /*case Index.routeName:
-                            route = MaterialPageRoute(
-                                builder: (context) {
-                                    return const Index();
-                                }
-                            );
-                            break;
-                        case Favourites.routeName:
-                            route = MaterialPageRoute(
-                                builder: (context) {
-                                    return const Favourites();
-                                }
-                            );
-                            break;
-                        case Information.routeName:
-                            route = MaterialPageRoute(
-                                builder: (context) {
-                                    return const Information();
-                                }
-                            );
-                            break;
-                        case GuidelineContainer.routeName:
+                        case GuidelineWindow.routeName:
                             final guideline = (settings.arguments as Map)['guideline'] as String;
                             final showCommercialStandard = (settings.arguments as Map)['showCommercialStandard'] as bool;
                             route = MaterialPageRoute(
                                 builder: (context) {
-                                    return GuidelineContainer(guideline, showCommercialStandard);
+                                    //return GuidelineWindow(guideline, showCommercialStandard);
+                                    return GuidelineWindow('coronary_artery_bypass_grafting');
                                 }
                             );
                             break;
                         default:
                             assert(false, 'Need to implement ${settings.name}');
                             route = null;
-                            break;*/
+                            break;
                     }
                     return route;
                 }
