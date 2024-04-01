@@ -124,7 +124,9 @@ class _IndexState extends State<Index> {
                         children: buildPanels(context, index, preferences),
                         expansionCallback: (i, isOpen) {
                             setState(() {
-                                _panelIsOpen?[i] = !isOpen;
+                                // TODO: There is a bug somewhere as the commented line should work
+                                // _panelIsOpen?[i] = !isOpen;
+                                _panelIsOpen?[i] = !_panelIsOpen![i];
                             });
                         }
                     )
