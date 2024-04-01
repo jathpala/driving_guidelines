@@ -1,5 +1,2 @@
 Updgrade:
 webview_flutter
-flutter_native_splash
-flutter_lints
-flutter_launcher_icons
