@@ -13,7 +13,7 @@ class MainWindow extends StatefulWidget {
     const MainWindow({ Key? key }): super(key: key);
 
     /// Route name for navigation
-    static const routeName = '/';
+    static const routeName = '/main';
 
     @override
     State<MainWindow> createState() => _MainWindowState();
