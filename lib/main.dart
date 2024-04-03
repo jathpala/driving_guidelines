@@ -6,5 +6,7 @@ import 'package:flutter/material.dart';
 import 'app.dart';
 
 void main() {
-    runApp(const DrivingGuidelines());
+    runApp(
+        const DrivingGuidelines()
+    );
 }

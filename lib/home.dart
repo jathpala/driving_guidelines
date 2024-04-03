@@ -1,11 +1,13 @@
-/// Copyright 2022, Jath Palasubramaniam. All rights reserved.
-/// Licensed under the GNU General Public License (version 3).
+// Copyright 2022-2024, Jath Palasubramaniam. All rights reserved.
+// Licensed under the GNU General Public License (version 3).
 
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import "package:flutter/material.dart";
 
-import 'src/views/components/main_nav_bar.dart';
-import 'src/views/components/main_app_bar.dart';
+import "components/app_bar.dart";
+import "components/navigation_bar.dart";
+import "views/index.dart";
+// import "views/favourites.dart";
+// import "views/information.dart";
 
 class HomeScreen extends StatefulWidget {
     const HomeScreen({ super.key });
@@ -14,51 +16,47 @@ class HomeScreen extends StatefulWidget {
     State<HomeScreen> createState() => _HomeScreenState();
 }
 
-
-// class _HomeScreenState extends State<HomeScreen> {
-//     _HomeScreenState();
-
-//     @override
-//     Widget build(BuildContext context) {
-//         return ChangeNotifierProvider(
-//             create: (context) => IndexModel(),
-//             child: Scaffold(
-//                 appBar: const MainAppBar(),
-//                 bottomNavigationBar: const MainNavBar(MainWindow.routeName),
-//                 body: Consumer<WindowModel>(
-//                     builder: (context, view, child) => view.mainWindowBody
-//                 )
-//             )
-//         );
-//     }
-// }
-
-
 class _HomeScreenState extends State<HomeScreen> {
     _HomeScreenState();
+
+    int selectedIndex = 0;
+
+    final Map<int, Map<String, dynamic>>_pages = {
+        0: {
+            "title": "Driving Guidelines",
+            "page": const IndexPage()
+        },
+        1: {
+            "title": "Favourites",
+            "page": const Placeholder()
+        },
+        2: {
+            "title": "Information",
+            "page": const Placeholder()
+        }
+    };
+
+    void onDestinationSelected(int index) {
+        setState(() {
+            selectedIndex = index;
+        });
+    }
 
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-            appBar: const MainAppBar(),
-            bottomNavigationBar: const MainNavBar('/'),
+            appBar: MainAppBar(title: _pages[selectedIndex]?["title"]),
+            bottomNavigationBar: MainNavBar(
+                selectedIndex: selectedIndex,
+                onDestinationSelected: onDestinationSelected
+            ),
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
                     Navigator.pushNamed(context, '/main');
                 },
                 child: const Icon(Icons.cached)
             ),
-            body: Center(
-                child: TextButton(
-                    onPressed: () {
-                        Navigator.pushNamed(
-                            context,
-                            '/main',
-                        );
-                    },
-                    child: const Text('Go to old app')
-                )
-            )
+            body: _pages[selectedIndex]?["page"]
         );
     }
 }
