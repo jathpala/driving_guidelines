@@ -21,37 +21,30 @@ class Information extends StatefulWidget {
 class _InformationState extends State<Information> {
     _InformationState();
 
-    WebViewController? _controller;
+    // WebViewController? _controller;
 
-    static const _informationFilePath = 'assets/data/';
-    static const _informationFileName = 'information.html';
+    // static const _informationFilePath = 'assets/data/';
+    // static const _informationFileName = 'information.html';
 
-    void _loadHtml() async {
-        const file = _informationFilePath + _informationFileName;
-        String doc = await rootBundle.loadString(file);
-        _controller?.loadUrl(Uri.dataFromString(
-            doc,
-            mimeType: 'text/html',
-            encoding: Encoding.getByName('utf-8')
-        ).toString());
-    }
+    // void _loadHtml() async {
+    //     const file = _informationFilePath + _informationFileName;
+    //     String doc = await rootBundle.loadString(file);
+    //     _controller?.loadUrl(Uri.dataFromString(
+    //         doc,
+    //         mimeType: 'text/html',
+    //         encoding: Encoding.getByName('utf-8')
+    //     ).toString());
+    // }
 
-    Future<NavigationDecision> _launchUrl(NavigationRequest nav) async {
-        if (await canLaunchUrl(Uri.parse(nav.url))) {
-            await launchUrl(Uri.parse(nav.url), mode: LaunchMode.externalApplication);
-        }
-        return NavigationDecision.prevent;
-    }
+    // Future<NavigationDecision> _launchUrl(NavigationRequest nav) async {
+    //     if (await canLaunchUrl(Uri.parse(nav.url))) {
+    //         await launchUrl(Uri.parse(nav.url), mode: LaunchMode.externalApplication);
+    //     }
+    //     return NavigationDecision.prevent;
+    // }
 
     @override
     Widget build(BuildContext context) {
-        return WebView(
-            initialUrl: 'about:blank',
-            onWebViewCreated: (WebViewController webViewController) {
-                _controller = webViewController;
-                _loadHtml();
-            },
-            navigationDelegate: _launchUrl
-        );
+        return const Placeholder();
     }
 }

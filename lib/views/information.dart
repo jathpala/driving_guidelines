@@ -22,37 +22,52 @@ class InformationPage extends StatefulWidget {
 class _InformationPageState extends State<InformationPage> {
     _InformationPageState();
 
-    WebViewController? _controller;
+    final WebViewController _controller = WebViewController();
+    bool isPageLoaded = false;
 
     static const _informationFilePath = "assets/data/";
     static const _informationFileName = "information.html";
+    static const _filename = _informationFilePath + _informationFileName;
 
-    void _loadHtml() async {
-        const file = _informationFilePath + _informationFileName;
-        String doc = await rootBundle.loadString(file);
-        _controller?.loadUrl(Uri.dataFromString(
-            doc,
-            mimeType: "text/html",
-            encoding: Encoding.getByName("utf-8")
-        ).toString());
-    }
+    @override
+    void initState() {
+        super.initState();
+        rootBundle.loadString(_filename).then((doc) =>
+            _controller
+            ..setNavigationDelegate(NavigationDelegate(
+                onPageFinished: (String url) {
+                    setState(() {
+                        isPageLoaded = true;
+                    });
+                },
+                onNavigationRequest: (NavigationRequest navigation) async {
+                    if (await canLaunchUrl(Uri.parse(navigation.url))) {
+                        await launchUrl(Uri.parse(navigation.url), mode: LaunchMode.externalApplication);
+                    }
+                    return NavigationDecision.prevent;
+                }
+            ))
+            ..loadRequest(Uri.dataFromString(
+                doc,
+                mimeType: "text/html",
+                encoding: Encoding.getByName("utf-8")
+            ))
 
-    Future<NavigationDecision> _launchUrl(NavigationRequest nav) async {
-        if (await canLaunchUrl(Uri.parse(nav.url))) {
-            await launchUrl(Uri.parse(nav.url), mode: LaunchMode.externalApplication);
-        }
-        return NavigationDecision.prevent;
+        );
     }
 
     @override
     Widget build(BuildContext context) {
-        return WebView(
-            initialUrl: "about:blank",
-            onWebViewCreated: (WebViewController webViewController) {
-                _controller = webViewController;
-                _loadHtml();
-            },
-            navigationDelegate: _launchUrl
+        return Stack(
+            children: [
+                WebViewWidget(
+                    controller: _controller
+                ),
+                if (!isPageLoaded) const Center(
+                    child: CircularProgressIndicator()
+                )
+            ]
         );
     }
+
 }

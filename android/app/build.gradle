@@ -49,7 +49,7 @@ android {
 
     defaultConfig {
         applicationId 'au.org.prometheus.driving_guidelines'
-        minSdkVersion 19
+        minSdkVersion 20
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
