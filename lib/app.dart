@@ -1,16 +1,18 @@
 // Copyright 2022-2024, Jath Palasubramaniam. All rights reserved.
 // Licensed under the GNU General Public License (version 3).
 
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import "package:flutter/material.dart";
+import "package:provider/provider.dart";
 
 import "home.dart";
+import 'models/index_model.dart';
+import 'models/preferences_model.dart';
 
 import 'package:driving_guidelines/src/style.dart';
 import 'src/main_window.dart';
 import 'src/guideline_window.dart';
 import 'src/models/window_model.dart';
-import 'src/models/preferences_model.dart';
+
 
 class DrivingGuidelines extends StatelessWidget {
     const DrivingGuidelines({super.key});
@@ -21,7 +23,8 @@ class DrivingGuidelines extends StatelessWidget {
         return MultiProvider(
             providers: [
                 ChangeNotifierProvider(create: (context) => WindowModel()),
-                ChangeNotifierProvider(create: (context) => PreferencesModel())
+                ChangeNotifierProvider(create: (context) => IndexModel()),
+                ChangeNotifierProvider(create: (context) => PreferencesModel()),
             ],
             child: MaterialApp(
                 title: 'Driving Guidelines',
