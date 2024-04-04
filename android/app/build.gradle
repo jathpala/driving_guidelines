@@ -48,7 +48,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "au.org.prometheus.driving_guidelines"
+        applicationId 'au.org.prometheus.driving_guidelines'
         minSdkVersion 19
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -66,6 +66,9 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+        }
+        debug {
+            applicationIdSuffix 'debug'
         }
     }
 }

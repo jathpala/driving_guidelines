@@ -1,11 +1,11 @@
 // Copyright 2022-2024, Jath Palasubramaniam. All rights reserved.
 // Licensed under the GNU General Public License (version 3).
 
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../views/index.dart';
-import '../views/favourites.dart';
-import '../views/information.dart';
+import "../views/index.dart";
+import "../views/favourites.dart";
+import "../views/information.dart";
 
 
 class PageModel extends ChangeNotifier {
@@ -21,7 +21,7 @@ class PageModel extends ChangeNotifier {
     int? index = 0;
 
     // Title to be displayed in the app bar
-    String title = '';
+    String title = "";
 
     // View to be displayed in the main window
     Widget page = const Placeholder();
@@ -37,10 +37,10 @@ class PageModel extends ChangeNotifier {
                 index = 1;
                 page = const FavouritesPage();
                 break;
-            case 2:
-                title = Information.title;
+            case InformationPage.id:
+                title = InformationPage.title;
                 index = 2;
-                page = const Information();
+                page = const InformationPage();
                 break;
             default:
                 page = const Placeholder();
@@ -55,9 +55,8 @@ class PageModel extends ChangeNotifier {
         return switch (index) {
             0 => setActivePage(IndexPage.id),
             1 => setActivePage(FavouritesPage.id),
-            2 => setActivePage("information"),
+            2 => setActivePage(InformationPage.id),
             _ => setActivePage("undefined")
         };
     }
-
 }

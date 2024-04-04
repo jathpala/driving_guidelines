@@ -7,9 +7,6 @@ import "package:provider/provider.dart";
 import "models/page_model.dart";
 import "components/app_bar.dart";
 import "components/navigation_bar.dart";
-import "views/index.dart";
-// import "views/favourites.dart";
-// import "views/information.dart";
 
 class HomeScreen extends StatefulWidget {
     const HomeScreen({ super.key });
@@ -20,8 +17,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
     _HomeScreenState();
-
-    int selectedIndex = 0;
 
     @override
     Widget build(BuildContext context) {

@@ -1,38 +1,39 @@
-/// Copyright 2022, Jath Palasubramaniam. All rights reserved.
-/// Licensed under the GNU General Public License (version 3).
+// Copyright 2022-2024, Jath Palasubramaniam. All rights reserved.
+// Licensed under the GNU General Public License (version 3).
 
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import "package:webview_flutter/webview_flutter.dart";
+import "package:url_launcher/url_launcher.dart";
 
-class Information extends StatefulWidget {
-    const Information({ Key? key }): super(key: key);
+class InformationPage extends StatefulWidget {
+    const InformationPage({ super.key });
 
-    static const title = 'Information';
+    static const id = "information";
+    static const title = "Information";
 
     @override
-    State<Information> createState() => _InformationState();
+    State<InformationPage> createState() => _InformationPageState();
 }
 
-class _InformationState extends State<Information> {
-    _InformationState();
+class _InformationPageState extends State<InformationPage> {
+    _InformationPageState();
 
     WebViewController? _controller;
 
-    static const _informationFilePath = 'assets/data/';
-    static const _informationFileName = 'information.html';
+    static const _informationFilePath = "assets/data/";
+    static const _informationFileName = "information.html";
 
     void _loadHtml() async {
         const file = _informationFilePath + _informationFileName;
         String doc = await rootBundle.loadString(file);
         _controller?.loadUrl(Uri.dataFromString(
             doc,
-            mimeType: 'text/html',
-            encoding: Encoding.getByName('utf-8')
+            mimeType: "text/html",
+            encoding: Encoding.getByName("utf-8")
         ).toString());
     }
 
@@ -46,7 +47,7 @@ class _InformationState extends State<Information> {
     @override
     Widget build(BuildContext context) {
         return WebView(
-            initialUrl: 'about:blank',
+            initialUrl: "about:blank",
             onWebViewCreated: (WebViewController webViewController) {
                 _controller = webViewController;
                 _loadHtml();
