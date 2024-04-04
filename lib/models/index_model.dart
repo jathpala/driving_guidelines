@@ -13,13 +13,14 @@ class IndexModel extends ChangeNotifier {
 
     static const _indexFile = 'assets/guidelines/index.json';
 
-    Index? index;
+    Map<String, dynamic>? flatIndex;
+    Index? categorisedIndex;
 
     // Reads the index file and adds all entries to the guidelines list
     void loadIndex() async {
         String doc = await rootBundle.loadString(_indexFile);
-        Map<String, dynamic> json = jsonDecode(doc);
-        index = Index(json);
+        flatIndex = jsonDecode(doc);
+        categorisedIndex = Index(flatIndex);
         notifyListeners();
     }
 }

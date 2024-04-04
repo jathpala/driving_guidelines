@@ -5,14 +5,13 @@ import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 
 import "home.dart";
-import 'models/index_model.dart';
-import 'models/preferences_model.dart';
+import "models/index_model.dart";
+import "models/preferences_model.dart";
+import "models/page_model.dart";
 
 import 'package:driving_guidelines/src/style.dart';
 import 'src/main_window.dart';
 import 'src/guideline_window.dart';
-import 'src/models/window_model.dart';
-
 
 class DrivingGuidelines extends StatelessWidget {
     const DrivingGuidelines({super.key});
@@ -22,7 +21,7 @@ class DrivingGuidelines extends StatelessWidget {
     Widget build(BuildContext context) {
         return MultiProvider(
             providers: [
-                ChangeNotifierProvider(create: (context) => WindowModel()),
+                ChangeNotifierProvider(create: (context) => PageModel()),
                 ChangeNotifierProvider(create: (context) => IndexModel()),
                 ChangeNotifierProvider(create: (context) => PreferencesModel()),
             ],

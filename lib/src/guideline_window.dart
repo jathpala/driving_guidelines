@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'style.dart';
 import 'models/guideline_model.dart';
-import 'models/preferences_model.dart';
+import '../models/preferences_model.dart';
 import 'views/components/main_app_bar.dart';
 import 'views/components/main_nav_bar.dart';
 import 'widgets/guideline.dart';

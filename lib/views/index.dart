@@ -7,10 +7,13 @@ import "package:provider/provider.dart";
 import "../models/index_model.dart";
 import "../models/preferences_model.dart";
 
+import "../src/guideline_window.dart";
+
 
 class IndexPage extends StatefulWidget {
     const IndexPage({ super.key });
 
+    static const id = "index";
     static const title = "Driving Guidelines";
 
     @override
@@ -19,8 +22,6 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
     _IndexPageState();
-
-    // final Index _index = Index(list);
 
     Widget buildPanelContents(IndexCategory category, PreferencesModel preferences) {
         List<Widget> panelContents = [];
@@ -37,7 +38,15 @@ class _IndexPageState extends State<IndexPage> {
                     ),
                     onPressed: () => preferences.toggleFavourite(item.id)
                 ),
-                onTap: () {}
+                onTap: () {
+                    Navigator.pushNamed(
+                        context,
+                        GuidelineWindow.routeName,
+                        arguments: {
+                            'guideline': item.id
+                        }
+                    );
+                }
             )));
             firstGroup = false;
         }
@@ -49,7 +58,7 @@ class _IndexPageState extends State<IndexPage> {
         return SingleChildScrollView(
             child: Consumer2<IndexModel, PreferencesModel>(
                 builder: (context, index, preferences, child) => ExpansionPanelList(
-                    children: index.index?.categories.map<ExpansionPanel>((IndexCategory category) {
+                    children: index.categorisedIndex?.categories.map<ExpansionPanel>((IndexCategory category) {
                         return ExpansionPanel(
                             headerBuilder: (BuildContext context, bool isExpanded) {
                                 return ListTile(
@@ -71,7 +80,7 @@ class _IndexPageState extends State<IndexPage> {
                     )],
                     expansionCallback: (i, isExpanded) {
                         setState(() {
-                            index.index?.categories[i].isExpanded = isExpanded;
+                            index.categorisedIndex?.categories[i].isExpanded = isExpanded;
                         });
                     }
                 )

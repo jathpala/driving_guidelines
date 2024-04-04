@@ -2,7 +2,9 @@
 // Licensed under the GNU General Public License (version 3).
 
 import "package:flutter/material.dart";
+import "package:provider/provider.dart";
 
+import "models/page_model.dart";
 import "components/app_bar.dart";
 import "components/navigation_bar.dart";
 import "views/index.dart";
@@ -21,42 +23,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
     int selectedIndex = 0;
 
-    final Map<int, Map<String, dynamic>>_pages = {
-        0: {
-            "title": "Driving Guidelines",
-            "page": const IndexPage()
-        },
-        1: {
-            "title": "Favourites",
-            "page": const Placeholder()
-        },
-        2: {
-            "title": "Information",
-            "page": const Placeholder()
-        }
-    };
-
-    void onDestinationSelected(int index) {
-        setState(() {
-            selectedIndex = index;
-        });
-    }
-
     @override
     Widget build(BuildContext context) {
-        return Scaffold(
-            appBar: MainAppBar(title: _pages[selectedIndex]?["title"]),
-            bottomNavigationBar: MainNavBar(
-                selectedIndex: selectedIndex,
-                onDestinationSelected: onDestinationSelected
-            ),
-            floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                    Navigator.pushNamed(context, '/main');
-                },
-                child: const Icon(Icons.cached)
-            ),
-            body: _pages[selectedIndex]?["page"]
+        return Consumer<PageModel>(
+            builder: (context, page, child) => Scaffold(
+                appBar: MainAppBar(title: page.title),
+                bottomNavigationBar: MainNavBar(
+                    selectedIndex: page.index ?? 0,
+                    onDestinationSelected: page.handleNavBarSelection
+                ),
+                body: page.page
+            )
         );
     }
 }
