@@ -47,16 +47,23 @@ class _FavouritesPageState extends State<FavouritesPage> {
         bool firstGroup = true;
         groupedFavourites.forEach((String group, Set<String>items) {
             if (!firstGroup) {
-                widgetList.add(const Divider());
+                widgetList.add(Container(
+                    color: Theme.of(context).colorScheme.background,
+                    child: const Divider()
+                ));
             }
             widgetList.addAll(items.map<ListTile>((String item) => ListTile(
                 title: Text(index[item]["name"]),
                 trailing: IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                         Icons.favorite,
+                        color: Colors.red[600]!
                     ),
                     onPressed: () => preferences.toggleFavourite(item)
                 ),
+                tileColor: Theme.of(context).colorScheme.background,
+                contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
+                minVerticalPadding: 0.0,
                 onTap: () {
                     page.setActivePage(GuidelinePage.id, arguments: { "guideline": item });
                 }

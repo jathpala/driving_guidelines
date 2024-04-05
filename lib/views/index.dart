@@ -35,16 +35,23 @@ class _IndexPageState extends State<IndexPage> {
         bool firstGroup = true;
         for (IndexGroup group in category.groups) {
             if (!firstGroup) {
-                panelContents.add(const Divider());
+                panelContents.add(Container(
+                    color: Theme.of(context).colorScheme.background,
+                    child: const Divider()
+                ));
             }
             panelContents.addAll(group.items.map<ListTile>((IndexItem item) => ListTile(
                 title: Text(item.name),
                 trailing: IconButton(
                     icon: Icon(
                         preferences.favourites.contains(item.id) ? Icons.favorite : Icons.favorite_border,
+                        color: preferences.favourites.contains(item.id) ? Colors.red[600]! : Colors.grey[400]!
                     ),
                     onPressed: () => preferences.toggleFavourite(item.id)
                 ),
+                tileColor: Theme.of(context).colorScheme.background,
+                contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
+                minVerticalPadding: 0.0,
                 onTap: () {
                     page.setActivePage(GuidelinePage.id, arguments: { "guideline": item.id });
                 }
@@ -60,16 +67,20 @@ class _IndexPageState extends State<IndexPage> {
             child: Consumer3<IndexModel, PreferencesModel, PageModel>(
                 builder: (context, index, preferences, page, child) {
                     return ExpansionPanelList(
+                        materialGapSize: 8.0,
+                        expandedHeaderPadding: const EdgeInsets.symmetric(vertical: 4.0),
                         children: index.categorisedIndex?.categories.map<ExpansionPanel>((IndexCategory category) {
                             return ExpansionPanel(
                                 headerBuilder: (BuildContext context, bool isExpanded) {
                                     return ListTile(
-                                        title: Text(category.name)
+                                        title: Text(category.name),
+                                        titleTextStyle: Theme.of(context).textTheme.titleMedium,
                                     );
                                 },
                                 body: buildPanelContents(category, preferences, page),
                                 isExpanded: category.isExpanded,
-                                canTapOnHeader: true
+                                canTapOnHeader: true,
+                                backgroundColor: category.isExpanded ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.background
                             );
                         }).toList() ?? [ExpansionPanel(
                             headerBuilder: (BuildContext context, bool isExpanded) {
