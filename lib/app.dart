@@ -10,8 +10,6 @@ import "models/preferences_model.dart";
 import "models/page_model.dart";
 
 import 'package:driving_guidelines/src/style.dart';
-import 'src/main_window.dart';
-import 'src/guideline_window.dart';
 
 class DrivingGuidelines extends StatelessWidget {
     const DrivingGuidelines({super.key});
@@ -31,31 +29,31 @@ class DrivingGuidelines extends StatelessWidget {
                 home: const HomeScreen(),
                 // home: const MainWindow(),
                 //initialRoute: Index.routeName,
-                onGenerateRoute: (RouteSettings settings) {
-                    MaterialPageRoute? route;
-                    switch (settings.name) {
-                        case MainWindow.routeName:
-                            route = MaterialPageRoute(
-                                builder: (context) {
-                                    return const MainWindow();
-                                }
-                            );
-                            break;
-                        case GuidelineWindow.routeName:
-                            final guideline = (settings.arguments as Map)['guideline'] as String;
-                            route = MaterialPageRoute(
-                                builder: (context) {
-                                    return GuidelineWindow(guideline);
-                                }
-                            );
-                            break;
-                        default:
-                            assert(false, 'Need to implement ${settings.name}');
-                            route = null;
-                            break;
-                    }
-                    return route;
-                }
+                // onGenerateRoute: (RouteSettings settings) {
+                //     MaterialPageRoute? route;
+                //     switch (settings.name) {
+                //         case MainWindow.routeName:
+                //             route = MaterialPageRoute(
+                //                 builder: (context) {
+                //                     return const MainWindow();
+                //                 }
+                //             );
+                //             break;
+                //         case GuidelineWindow.routeName:
+                //             final guideline = (settings.arguments as Map)['guideline'] as String;
+                //             route = MaterialPageRoute(
+                //                 builder: (context) {
+                //                     return GuidelineWindow(guideline);
+                //                 }
+                //             );
+                //             break;
+                //         default:
+                //             assert(false, 'Need to implement ${settings.name}');
+                //             route = null;
+                //             break;
+                //     }
+                //     return route;
+                // }
             )
         );
     }

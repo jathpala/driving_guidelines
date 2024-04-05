@@ -4,8 +4,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/index_model.dart';
-import '../models/preferences_model.dart';
+import "../models/index_model.dart";
+import "../models/preferences_model.dart";
+import "../models/page_model.dart";
 
 import "../src/guideline_window.dart";
 
@@ -14,7 +15,7 @@ class FavouritesPage extends StatefulWidget {
     const FavouritesPage ({ super.key });
 
     static const id = "favourites";
-    static const title = "Favourites";
+    final title = "Favourites";
 
     @override
     State<FavouritesPage> createState() => _FavouritesPageState();
@@ -23,6 +24,13 @@ class FavouritesPage extends StatefulWidget {
 
 class _FavouritesPageState extends State<FavouritesPage> {
     _FavouritesPageState();
+
+    @override
+    void initState() {
+        super.initState();
+        final page = context.read<PageModel>();
+        WidgetsBinding.instance.addPostFrameCallback((_) => page.title = widget.title);
+    }
 
     List<Widget> buildList(BuildContext context, Map<String, dynamic>index, PreferencesModel preferences) {
 
@@ -66,8 +74,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
 
     @override
     Widget build(BuildContext context) {
-        return Consumer2<IndexModel, PreferencesModel>(
-            builder: (context, index, preferences, child) {
+        return Consumer3<IndexModel, PreferencesModel, PageModel>(
+            builder: (context, index, preferences, page, child) {
                 if (preferences.favourites.isEmpty) {
                     // No favourites
                     return const Center(

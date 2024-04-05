@@ -5,15 +5,17 @@ import "dart:convert";
 
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-
+import "package:provider/provider.dart";
 import "package:webview_flutter/webview_flutter.dart";
 import "package:url_launcher/url_launcher.dart";
+
+import "../models/page_model.dart";
 
 class InformationPage extends StatefulWidget {
     const InformationPage({ super.key });
 
     static const id = "information";
-    static const title = "Information";
+    final title = "Information";
 
     @override
     State<InformationPage> createState() => _InformationPageState();
@@ -32,6 +34,10 @@ class _InformationPageState extends State<InformationPage> {
     @override
     void initState() {
         super.initState();
+
+        final page = context.read<PageModel>();
+        WidgetsBinding.instance.addPostFrameCallback((_) => page.title = widget.title);
+
         rootBundle.loadString(_filename).then((doc) =>
             _controller
             ..setNavigationDelegate(NavigationDelegate(
@@ -69,5 +75,4 @@ class _InformationPageState extends State<InformationPage> {
             ]
         );
     }
-
 }

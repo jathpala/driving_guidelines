@@ -6,6 +6,7 @@ import "package:flutter/material.dart";
 import "../views/index.dart";
 import "../views/favourites.dart";
 import "../views/information.dart";
+import "../views/guideline.dart";
 
 
 class PageModel extends ChangeNotifier {
@@ -21,27 +22,31 @@ class PageModel extends ChangeNotifier {
     int? index = 0;
 
     // Title to be displayed in the app bar
-    String title = "";
+    String _title = "";
+    String get title => _title;
+    set title(String value) {
+        _title = value;
+        notifyListeners();
+    }
 
     // View to be displayed in the main window
     Widget page = const Placeholder();
 
-    void setActivePage(pageId, { arguments }) {
+    void setActivePage(String pageId, { Map<String, dynamic>? arguments }) {
         switch (pageId) {
             case IndexPage.id:
-                title = IndexPage.title;
                 index = 0;
                 page = const IndexPage();
             case FavouritesPage.id:
-                title = FavouritesPage.title;
                 index = 1;
                 page = const FavouritesPage();
                 break;
             case InformationPage.id:
-                title = InformationPage.title;
                 index = 2;
                 page = const InformationPage();
                 break;
+            case GuidelinePage.id:
+                page = GuidelinePage(arguments!["guideline"]);
             default:
                 page = const Placeholder();
                 break;
@@ -58,5 +63,9 @@ class PageModel extends ChangeNotifier {
             2 => setActivePage(InformationPage.id),
             _ => setActivePage("undefined")
         };
+    }
+
+    void handleBackButtonFromGuidelinePage() {
+
     }
 }
