@@ -21,13 +21,22 @@ class _HomeScreenState extends State<HomeScreen> {
     @override
     Widget build(BuildContext context) {
         return Consumer<PageModel>(
-            builder: (context, page, child) => Scaffold(
-                appBar: MainAppBar(title: page.title),
-                bottomNavigationBar: MainNavBar(
-                    selectedIndex: page.index ?? 0,
-                    onDestinationSelected: page.handleNavBarSelection
-                ),
-                body: page.page
+            builder: (context, page, child) => PopScope(
+                canPop: page.isPrimaryPage,
+                onPopInvoked: (bool didPop) {
+                    if (!didPop) {
+                        page.setActivePageByIndex(page.index);
+                    }
+                },
+                child: Scaffold(
+                    appBar: MainAppBar(title: page.title),
+                    bottomNavigationBar: MainNavBar(
+                        selectedIndex: page.index,
+                        onDestinationSelected: page.setActivePageByIndex
+                    ),
+                    floatingActionButton: page.fab,
+                    body: page.page
+                )
             )
         );
     }

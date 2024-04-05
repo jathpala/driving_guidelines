@@ -8,7 +8,7 @@ import "../models/index_model.dart";
 import "../models/preferences_model.dart";
 import "../models/page_model.dart";
 
-import "../src/guideline_window.dart";
+import "guideline.dart";
 
 
 class FavouritesPage extends StatefulWidget {
@@ -32,7 +32,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
         WidgetsBinding.instance.addPostFrameCallback((_) => page.title = widget.title);
     }
 
-    List<Widget> buildList(BuildContext context, Map<String, dynamic>index, PreferencesModel preferences) {
+    List<Widget> buildList(BuildContext context, Map<String, dynamic>index, PreferencesModel preferences, PageModel page) {
 
         // Group all favourited guidelines
         Map<String, Set<String>> groupedFavourites = {};
@@ -58,13 +58,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
                     onPressed: () => preferences.toggleFavourite(item)
                 ),
                 onTap: () {
-                    Navigator.pushNamed(
-                        context,
-                        GuidelineWindow.routeName,
-                        arguments: {
-                            'guideline': item
-                        }
-                    );
+                    page.setActivePage(GuidelinePage.id, arguments: { "guideline": item });
                 }
             )));
             firstGroup = false;
@@ -85,7 +79,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
                     );
                 } else {
                     return ListView(
-                        children: buildList(context, index.flatIndex ?? {}, preferences)
+                        children: buildList(context, index.flatIndex ?? {}, preferences, page)
                     );
                 }
             }
