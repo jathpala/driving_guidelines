@@ -26,7 +26,7 @@ class _FavouriteFabState extends State<FavouriteFab> {
             builder: (context, preferences, child) {
                 return FloatingActionButton(
                     child: preferences.favourites.contains(widget.id) ?
-                        const Icon(Icons.favorite) :
+                        Icon(Icons.favorite, color: Theme.of(context).colorScheme.onSecondary) :
                         const Icon(Icons.favorite_border),
                     onPressed: () => preferences.toggleFavourite(widget.id),
                 );

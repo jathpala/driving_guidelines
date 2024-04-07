@@ -1,12 +1,12 @@
-/// Copyright 2022, Jath Palasubramaniam. All rights reserved.
-/// Licensed under the GNU General Public License (version 3).
+// Copyright 2022-2024, Jath Palasubramaniam. All rights reserved.
+// Licensed under the GNU General Public License (version 3).
 
 import 'package:flutter/material.dart';
 
 import 'package:yaml/yaml.dart';
 
 class GuidelineLicence extends StatelessWidget {
-    const GuidelineLicence(this.data, this.typeIsUnconditional, { Key? key }): super(key: key);
+    const GuidelineLicence(this.data, this.typeIsUnconditional, { super.key });
 
     static const unconditional = true;
     static const conditional = false;
@@ -19,7 +19,7 @@ class GuidelineLicence extends StatelessWidget {
         Widget heading = RichText(
             text: TextSpan(
                 text: typeIsUnconditional ? 'Unconditional Licence' : 'Conditional Licence',
-                style: Theme.of(context).textTheme.headline2
+                style: Theme.of(context).textTheme.bodyLarge
             )
         );
         List<Widget> body = [];
@@ -28,7 +28,7 @@ class GuidelineLicence extends StatelessWidget {
             body.add(RichText(
                 text: TextSpan(
                     text: 'Not allowed',
-                    style: Theme.of(context).textTheme.bodyText2
+                    style: Theme.of(context).textTheme.bodyMedium
                 )
             ));
         } else if (data.runtimeType == bool) {
@@ -36,7 +36,7 @@ class GuidelineLicence extends StatelessWidget {
             body.add(RichText(
                 text: TextSpan(
                     text: (data as bool) ? 'Allowed' : 'Not allowed',
-                    style: Theme.of(context).textTheme.bodyText2
+                    style: Theme.of(context).textTheme.bodyMedium
                 )
             ));
         } else {
@@ -57,7 +57,7 @@ class GuidelineLicence extends StatelessWidget {
             body.add(RichText(
                 text: TextSpan(
                     text: sentence,
-                    style: Theme.of(context).textTheme.bodyText2
+                    style: Theme.of(context).textTheme.bodyMedium
                 )
             ));
             if (conditions['criteria'] != null) {
@@ -66,21 +66,21 @@ class GuidelineLicence extends StatelessWidget {
                     body.add(const SizedBox(height: 2.5));
                     body.add(RichText(
                         text: TextSpan(
-                            text: ' \u2022  ' + criterion,
-                            style: Theme.of(context).textTheme.bodyText2
+                            text: " \u2022  $criterion",
+                            style: Theme.of(context).textTheme.bodyMedium
                         )
                     ));
                 });
             }
         }
         return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
                 const SizedBox(height: 20),
                 heading,
                 const SizedBox(height: 5),
                 ...body
             ],
-            crossAxisAlignment: CrossAxisAlignment.start
         );
     }
 }

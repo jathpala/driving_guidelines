@@ -12,17 +12,17 @@ class MainNavBar extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return NavigationBar(
-            destinations: [
+            destinations: const [
                 NavigationDestination(
-                    icon: Icon(Icons.home, color: selectedIndex == 0 ? Colors.purple[300]! : Colors.grey[600]!),
+                    icon: Icon(Icons.home),
                     label: "Index"
                 ),
                 NavigationDestination(
-                    icon: Icon(Icons.favorite, color: selectedIndex == 1 ? Colors.purple[300]! : Colors.grey[600]!),
+                    icon: Icon(Icons.favorite),
                     label: "Favourites"
                 ),
                 NavigationDestination(
-                    icon: Icon(Icons.commute, color: selectedIndex == 2 ? Colors.purple[300]! : Colors.grey[600]!),
+                    icon: Icon(Icons.commute),
                     label: "Information"
                 )
             ],

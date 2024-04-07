@@ -1,10 +1,10 @@
-/// Copyright 2022, Jath Palasubramaniam. All rights reserved.
-/// Licensed under the GNU General Public License (version 3).
+// Copyright 2022-2024, Jath Palasubramaniam. All rights reserved.
+// Licensed under the GNU General Public License (version 3).
 
 import 'package:flutter/material.dart';
 
 class GuidelineNonDriving extends StatelessWidget {
-    const GuidelineNonDriving(this.data, { Key? key }): super(key: key);
+    const GuidelineNonDriving(this.data, { super.key });
 
     final Object? data;
 
@@ -13,7 +13,7 @@ class GuidelineNonDriving extends StatelessWidget {
         Widget heading = RichText(
             text: TextSpan(
                 text: 'Non-Driving Period',
-                style: Theme.of(context).textTheme.headline2
+                style: Theme.of(context).textTheme.bodyLarge
             )
         );
         List<Widget> body = [];
@@ -22,7 +22,7 @@ class GuidelineNonDriving extends StatelessWidget {
             body.add(RichText(
                 text: TextSpan(
                     text: 'None',
-                    style: Theme.of(context).textTheme.bodyText2
+                    style: Theme.of(context).textTheme.bodyMedium
                 )
             ));
         } else if (data.runtimeType == String) {
@@ -30,7 +30,7 @@ class GuidelineNonDriving extends StatelessWidget {
             body.add(RichText(
                 text: TextSpan(
                     text: data as String,
-                    style: Theme.of(context).textTheme.bodyText2
+                    style: Theme.of(context).textTheme.bodyMedium
                 )
             ));
         } else {
@@ -39,13 +39,13 @@ class GuidelineNonDriving extends StatelessWidget {
             var periods = data as List;
             if (periods.length == 1) {
                 String condition = periods[0]['criteria'] ?? '';
-                condition = condition.isNotEmpty ? condition + ': ' : condition;
+                condition = condition.isNotEmpty ? "$condition: " : condition;
                 String duration = periods[0]['duration'] ?? 'None';
                 durations.add(const SizedBox(height: 5));
                 durations.add(RichText(
                     text: TextSpan(
                         text: condition + duration,
-                        style: Theme.of(context).textTheme.bodyText2
+                        style: Theme.of(context).textTheme.bodyMedium
                     )
                 ));
             } else {
@@ -56,24 +56,24 @@ class GuidelineNonDriving extends StatelessWidget {
                     durations.add(RichText(
                         text: TextSpan(
                             text: condition + duration,
-                            style: Theme.of(context).textTheme.bodyText2
+                            style: Theme.of(context).textTheme.bodyMedium
                         )
                     ));
                 }
             }
             body.add(Column(
-                children: durations,
-                crossAxisAlignment: CrossAxisAlignment.start
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: durations
             ));
         }
         return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
                 const SizedBox(height: 20),
                 heading,
                 const SizedBox(height: 5),
                 ...body
             ],
-            crossAxisAlignment: CrossAxisAlignment.start
         );
     }
 }

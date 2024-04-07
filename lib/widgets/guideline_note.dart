@@ -1,10 +1,10 @@
-/// Copyright 2022, Jath Palasubramaniam. All rights reserved.
-/// Licensed under the GNU General Public License (version 3).
+// Copyright 2022-2024, Jath Palasubramaniam. All rights reserved.
+// Licensed under the GNU General Public License (version 3).
 
 import 'package:flutter/material.dart';
 
 class GuidelineNote extends StatelessWidget {
-    const GuidelineNote(this.data, { Key? key }): super(key: key);
+    const GuidelineNote(this.data, { super.key });
 
     final Object? data;
 
@@ -16,14 +16,14 @@ class GuidelineNote extends StatelessWidget {
             Widget heading = RichText(
                 text: TextSpan(
                     text: 'Note',
-                    style: Theme.of(context).textTheme.headline2
+                    style: Theme.of(context).textTheme.bodyLarge
                 )
             );
             List<Widget> body = [];
             body.add(RichText(
                 text: TextSpan(
                     text: note,
-                    style: Theme.of(context).textTheme.bodyText2
+                    style: Theme.of(context).textTheme.bodyMedium
                 )
             ));
             content = [
@@ -34,8 +34,8 @@ class GuidelineNote extends StatelessWidget {
             ];
         }
         return Column(
-            children: content,
-            crossAxisAlignment: CrossAxisAlignment.start
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: content
         );
     }
 }

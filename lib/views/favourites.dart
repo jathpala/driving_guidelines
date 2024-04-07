@@ -53,15 +53,17 @@ class _FavouritesPageState extends State<FavouritesPage> {
                 ));
             }
             widgetList.addAll(items.map<ListTile>((String item) => ListTile(
-                title: Text(index[item]["name"]),
+                title: Text(
+                    index[item]["name"],
+                    style: Theme.of(context).listTileTheme.subtitleTextStyle
+                ),
                 trailing: IconButton(
                     icon: Icon(
                         Icons.favorite,
-                        color: Colors.red[600]!
+                        color: Theme.of(context).colorScheme.onSecondary
                     ),
                     onPressed: () => preferences.toggleFavourite(item)
                 ),
-                tileColor: Theme.of(context).colorScheme.background,
                 contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
                 minVerticalPadding: 0.0,
                 onTap: () {

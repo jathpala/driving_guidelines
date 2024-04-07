@@ -4,29 +4,39 @@
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 
-import "home.dart";
-import "models/index_model.dart";
-import "models/preferences_model.dart";
 import "models/page_model.dart";
+import "components/app_bar.dart";
+import "components/navigation_bar.dart";
 
-import "theme.dart";
+class App extends StatefulWidget {
+    const App({ super.key });
 
-class DrivingGuidelines extends StatelessWidget {
-    const DrivingGuidelines({super.key});
+    @override
+    State<App> createState() => _AppState();
+}
 
-    // Application root.
+class _AppState extends State<App> {
+    _AppState();
+
     @override
     Widget build(BuildContext context) {
-        return MultiProvider(
-            providers: [
-                ChangeNotifierProvider(create: (context) => PageModel()),
-                ChangeNotifierProvider(create: (context) => IndexModel()),
-                ChangeNotifierProvider(create: (context) => PreferencesModel()),
-            ],
-            child: MaterialApp(
-                title: 'Driving Guidelines',
-                theme: theme,
-                home: const HomeScreen()
+        return Consumer<PageModel>(
+            builder: (context, page, child) => PopScope(
+                canPop: page.isPrimaryPage,
+                onPopInvoked: (bool didPop) {
+                    if (!didPop) {
+                        page.setActivePageByIndex(page.index);
+                    }
+                },
+                child: Scaffold(
+                    appBar: MainAppBar(title: page.title),
+                    bottomNavigationBar: MainNavBar(
+                        selectedIndex: page.index,
+                        onDestinationSelected: page.setActivePageByIndex
+                    ),
+                    floatingActionButton: page.fab,
+                    body: page.page
+                )
             )
         );
     }

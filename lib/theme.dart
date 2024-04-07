@@ -3,75 +3,91 @@
 
 import "package:flutter/material.dart";
 
+// Colors
+final _primary = Colors.teal[400]!;
+final _secondary = Colors.blue[100]!;
+final _onSecondary = Colors.indigo[400]!;
+final _surface = Colors.teal[50]!;
+final _onSurface = Colors.grey[700]!;
+const _background = Colors.white;
+final _onBackground = Colors.grey[900]!;
+final _outline = Colors.grey[400]!;
+final _outlineVariant = Colors.grey[200]!;
+final _error = Colors.red[400]!;
+
+// Text styles
+const _titleLarge = TextStyle(fontSize: 24);
+const _titleMedium = TextStyle(fontSize: 20, fontWeight: FontWeight.w400);
+const _titleSmall = TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
+const _labelMedium = TextStyle(fontSize: 20, fontWeight: FontWeight.w300);
+const _bodyLarge = TextStyle(fontSize: 18, fontWeight: FontWeight.w500);
+const _bodyMedium = TextStyle(fontSize: 16, fontWeight: FontWeight.w300);
+const _bodySmall = TextStyle(fontSize: 14, fontWeight: FontWeight.w300);
+
 
 final theme = ThemeData(
+    useMaterial3: true,
     colorScheme: ColorScheme(
         brightness: Brightness.light,
-        primary: Colors.teal[400]!,
-        onPrimary: Colors.white,
-        secondary: Colors.teal[100]!,
-        onSecondary: Colors.purple[300]!,
-        error: Colors.red[600]!,
-        onError: Colors.white,
-        background: Colors.white,
-        onBackground: Colors.black,
-        surface: Colors.grey[100]!,
-        onSurface: Colors.grey[900]!
+        primary: _primary,
+        onPrimary: _background,
+        secondary: _secondary,
+        onSecondary: _onSecondary,
+        error: _error,
+        onError: _background,
+        background: _background,
+        onBackground: _onBackground,
+        surface: _surface,
+        onSurface: _onSurface,
+        outline: _outline
     ),
     textTheme: const TextTheme(
-        titleLarge: TextStyle(fontSize: 24),
-        titleMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-        bodyLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)
+        titleLarge: _titleLarge,
+        titleMedium: _titleMedium,
+        titleSmall: _titleSmall,
+        bodyLarge: _bodyLarge,
+        bodyMedium: _bodyMedium,
+        bodySmall: _bodySmall,
     ),
     appBarTheme: AppBarTheme(
-        backgroundColor: Colors.teal[400]!,
-        foregroundColor: Colors.white,
+        backgroundColor: _primary,
+        foregroundColor: _background,
     ),
     navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: _surface,
         labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
             (Set<MaterialState> states) => states.contains(MaterialState.selected)
-                ? TextStyle(color: Colors.purple[300]!)
-                : TextStyle(color: Colors.grey[600]!)
+                ? TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: _onSecondary)
+                : TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: _onSurface)
         )
     ),
     dividerTheme: DividerThemeData(
-        color: Colors.grey[200]!,
+        color: _outlineVariant,
         indent: 15.0,
         endIndent: 15.0
+    ),
+    listTileTheme: ListTileThemeData(
+        tileColor: _background,
+        textColor: _onBackground,
+        titleTextStyle: _titleMedium,
+        subtitleTextStyle: _labelMedium
+    ),
+    tabBarTheme: TabBarTheme(
+        labelColor: _primary,
+        unselectedLabelColor: _onSurface
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: _secondary,
+        foregroundColor: _background
     )
 );
-
-
-    // scaffoldBackgroundColor: Colors.white,
-    // primaryColor: Colors.teal[400],
-    // appBarTheme: AppBarTheme(
-    //     backgroundColor: Colors.teal[400],
-    //     titleTextStyle: const TextStyle(fontSize: 26, fontWeight: FontWeight.w400, color: Colors.white),
-    // ),
-    // tabBarTheme: TabBarTheme(
-    //     labelColor: Colors.teal[400],
-    //     labelStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-    //     unselectedLabelColor: Colors.grey[600],
-    //     unselectedLabelStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500)
-    // ),
-    // textTheme: TextTheme(
-    //     headline1: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.black),
-    //     headline2: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, fontStyle: FontStyle.italic, color: Colors.grey[800]),
-    //     headline3: TextStyle(fontSize: 24, fontWeight: FontWeight.w400, color: Colors.grey[800]),
-    //     subtitle1: TextStyle(fontSize: 20, color: Colors.grey[800]),
-    //     subtitle2: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-    //     bodyText1: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
-    //     bodyText2: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Colors.grey[800])
-    // )
-
 
 extension CustomThemeData on ThemeData {
     Color get privateStandardColor => Colors.lightGreen[400]!;
     Color get commercialStandardColor => Colors.orange[200]!;
-    Color get navBarColor => Colors.blueGrey[100]!;
-    Color get navBarUnselectedColor => Colors.grey[600]!;
 }
 
+// TODO: Remove this once dialog box is updated
 extension CustomTextTheme on TextTheme {
     TextStyle get smallText1 => TextStyle(fontSize: 14, fontWeight: FontWeight.w300, color: Colors.grey[800]);
 }

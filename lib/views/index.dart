@@ -41,15 +41,19 @@ class _IndexPageState extends State<IndexPage> {
                 ));
             }
             panelContents.addAll(group.items.map<ListTile>((IndexItem item) => ListTile(
-                title: Text(item.name),
+                title: Text(
+                    item.name,
+                    style: Theme.of(context).listTileTheme.subtitleTextStyle
+                ),
                 trailing: IconButton(
                     icon: Icon(
                         preferences.favourites.contains(item.id) ? Icons.favorite : Icons.favorite_border,
-                        color: preferences.favourites.contains(item.id) ? Colors.red[600]! : Colors.grey[400]!
+                        color: preferences.favourites.contains(item.id)
+                            ? Theme.of(context).colorScheme.onSecondary
+                            : Theme.of(context).colorScheme.outline
                     ),
                     onPressed: () => preferences.toggleFavourite(item.id)
                 ),
-                tileColor: Theme.of(context).colorScheme.background,
                 contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
                 minVerticalPadding: 0.0,
                 onTap: () {
@@ -75,6 +79,9 @@ class _IndexPageState extends State<IndexPage> {
                                     return ListTile(
                                         title: Text(category.name),
                                         titleTextStyle: Theme.of(context).textTheme.titleMedium,
+                                        tileColor: isExpanded
+                                            ? Theme.of(context).colorScheme.surface
+                                            : Theme.of(context).colorScheme.background
                                     );
                                 },
                                 body: buildPanelContents(category, preferences, page),
