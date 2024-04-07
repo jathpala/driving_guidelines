@@ -1,5 +1,8 @@
-/// Generate an index file of all guideline.yaml files for use
-/// in building the main navigation of the app.
+// Copyright 2022-2024, Jath Palasubramaniam. All rights reserved.
+// Licensed under the GNU General Public License (version 3).
+
+// Generate an index file of all guideline.yaml files for use
+// in building the main navigation of the app.
 
 import 'dart:convert';
 import 'dart:io';

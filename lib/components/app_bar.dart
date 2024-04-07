@@ -3,7 +3,7 @@
 
 import "package:flutter/material.dart";
 
-import "../src/style.dart";
+import "../theme.dart";
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     const MainAppBar({ this.title, super.key });
