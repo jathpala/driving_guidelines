@@ -1,0 +1,49 @@
+name: Test
+group: test
+categories: [other]
+
+format: markdown
+
+private: >
+    # Non-Driving Period:
+
+    ## 4 weeks
+
+    # Unconditional Licence:
+
+    ## Allowed where:
+     - No symptoms at rest or on mild exertion and they feel really good and healthy
+     - No unstable symptoms
+     - Compliant with treatment
+
+    # Conditional Licence:
+
+    ## Allowed subject to periodic review by treating specialist where:
+      - Satisfactory response to treatment
+      - Minimal symptoms relavant to driving
+
+    # Notes
+
+    A stress test is not required
+
+commercial: >
+    # Non-driving Period
+
+    4 weeks
+
+    # Unconditional Licence
+
+    Allowed where:
+     - No symptoms at rest or on mild exertion
+     - No unstable symptoms
+     - Compliant with treatment
+
+    # Conditional Licence
+
+    Allowed subject to yearly review by treating specialist where:
+      - Satisfactory response to treatment
+      - Minimal symptoms relavant to driving
+
+    # Notes
+
+    A stress test is required

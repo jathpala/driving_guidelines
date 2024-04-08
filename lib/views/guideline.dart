@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:provider/provider.dart";
 import "package:yaml/yaml.dart";
+import "package:flutter_markdown/flutter_markdown.dart";
 
 import "../models/page_model.dart";
 import "../theme.dart";
@@ -63,24 +64,6 @@ class _GuidelinePageState extends State<GuidelinePage> with SingleTickerProvider
         _tabController.dispose();
     }
 
-    Widget buildBody() {
-        return FutureBuilder(
-            future: _data,
-            builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                    return Expanded(child: TabBarView(
-                        children: [
-                            GuidelineBody(snapshot.data!, false),
-                            GuidelineBody(snapshot.data!, true)
-                        ]
-                    ));
-                } else {
-                    return const Expanded(child: CircularProgressIndicator());
-                }
-            }
-        );
-    }
-
     @override
     Widget build(BuildContext context) {
         return Column(
@@ -103,8 +86,8 @@ class _GuidelinePageState extends State<GuidelinePage> with SingleTickerProvider
                             return Expanded(child: TabBarView(
                                 controller: _tabController,
                                 children: [
-                                    GuidelineBody(snapshot.data!, false),
-                                    GuidelineBody(snapshot.data!, true)
+                                    GuidelineBody(snapshot.data!),
+                                    GuidelineBody(snapshot.data!, showCommercial: true)
                                 ]
                             ));
                         } else {
@@ -119,7 +102,51 @@ class _GuidelinePageState extends State<GuidelinePage> with SingleTickerProvider
 
 
 class GuidelineBody extends StatelessWidget {
-    const GuidelineBody(this.guidelineData, this.showCommercialStandard, { super.key });
+    const GuidelineBody(this.guidelineData, { this.showCommercial = false, super.key });
+
+    final YamlMap guidelineData;
+    final bool showCommercial;
+
+    @override
+    Widget build(BuildContext context) {
+        switch (guidelineData["format"]) {
+            case "markdown":
+                return MarkdownGuidelineBody(guidelineData, showCommercial: showCommercial);
+            case "legacy":
+            default:
+                return LegacyGuidelineBody(guidelineData, showCommercial);
+        }
+    }
+}
+
+class MarkdownGuidelineBody extends StatelessWidget {
+    const MarkdownGuidelineBody(this.guidelineData, { this.showCommercial = false, super.key });
+
+    final YamlMap guidelineData;
+    final bool showCommercial;
+
+    @override
+    Widget build(BuildContext context) {
+        return Container(
+            decoration: BoxDecoration(
+                border: Border(
+                    top: BorderSide(
+                        color: showCommercial ? Theme.of(context).commercialStandardColor : Theme.of(context).privateStandardColor,
+                        width: 6
+                    )
+                )
+            ),
+            child: Markdown(
+                data: showCommercial ? guidelineData["commercial"] : guidelineData["private"],
+                styleSheet: Theme.of(context).guidelineStyle
+            )
+        );
+    }
+
+}
+
+class LegacyGuidelineBody extends StatelessWidget {
+    const LegacyGuidelineBody(this.guidelineData, this.showCommercialStandard, { super.key });
 
     final YamlMap guidelineData;
     final bool showCommercialStandard;

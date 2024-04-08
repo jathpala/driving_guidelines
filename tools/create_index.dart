@@ -4,15 +4,15 @@
 // Generate an index file of all guideline.yaml files for use
 // in building the main navigation of the app.
 
-import 'dart:convert';
-import 'dart:io';
+import "dart:convert";
+import "dart:io";
 
-import 'package:path/path.dart';
+import "package:path/path.dart";
 
-import 'package:yaml/yaml.dart';
+import "package:yaml/yaml.dart";
 
-final guidelineDir = join('assets', 'guidelines');
-const indexFile = 'index.json';
+final guidelineDir = join("assets", "guidelines");
+const indexFile = "index.json";
 
 void main() {
 
@@ -27,11 +27,12 @@ void main() {
     for (var f in files) {
         var contents = f.readAsStringSync();
         var yaml = loadYaml(contents);
-        var id = basename(f.path).split('.')[0];
+        var id = basename(f.path).split(".")[0];
         index[id] = {};
-        index[id]!['name'] = yaml['name'];
-        index[id]!['categories'] = yaml['categories'];
-        index[id]!['group'] = yaml['group'];
+        index[id]!["name"] = yaml["name"];
+        index[id]!["categories"] = yaml["categories"];
+        index[id]!["group"] = yaml["group"];
+        index[id]!["format"] = yaml["format"] ?? "legacy";
     }
 
     // Write JSON to the index file
@@ -43,13 +44,13 @@ void main() {
 
     var categories = <String>{};
     index.forEach((k, v) {
-        for(var c in (v['categories'] as List<dynamic>)) {
+        for(var c in (v["categories"] as List<dynamic>)) {
             categories.add(c);
         }
     });
 
-    print('\nGenerated index at $outfile with ${index.length} guidelines.');
-    print('\nCategories:');
+    print("\nGenerated index at $outfile with ${index.length} guidelines.");
+    print("\nCategories:");
     for (var c in categories) {
         print(' $c');
     }

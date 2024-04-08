@@ -2,6 +2,7 @@
 // Licensed under the GNU General Public License (version 3).
 
 import "package:flutter/material.dart";
+import "package:flutter_markdown/flutter_markdown.dart";
 
 // Colors
 final _primary = Colors.teal[400]!;
@@ -86,6 +87,21 @@ extension CustomThemeData on ThemeData {
     Color get privateStandardColor => Colors.lightGreen[400]!;
     Color get commercialStandardColor => Colors.orange[200]!;
 }
+
+extension GuidelineMarkdownStyle on ThemeData {
+    MarkdownStyleSheet get guidelineStyle => MarkdownStyleSheet(
+        h1: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: _onBackground),
+        h1Padding: const EdgeInsets.only(top: 16.0),
+        h2: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: _onBackground),
+        p: TextStyle(fontSize: 18, fontWeight: FontWeight.w300, color: _onBackground),
+        listBullet: TextStyle(fontSize: 18, fontWeight: FontWeight.w300, color: _onBackground),
+        listBulletPadding: const EdgeInsets.only(left: 4.0, right: 12.0),
+        listIndent: 0.0,
+        blockSpacing: 2.0,
+
+    );
+}
+
 
 // TODO: Remove this once dialog box is updated
 extension CustomTextTheme on TextTheme {
